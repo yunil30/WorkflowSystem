@@ -28,26 +28,5 @@
     </div>
 </header>
 
-<?= js_container()?>
-
-<script>
-    var host_url = '<?= host_url() ?>';
-
-    $('#HomePage').click(function() {
-        window.location.href = host_url;
-    });
-
-    $('#DocumentPage').click(function() {
-        var href = host_url + 'Home/DocumentPage';
-        window.location.href = href;
-    });
-
-    $('#CommunityPage').click(function() {
-        window.location.href = host_url; 
-    });
-
-    $('#AboutPage').click(function() {
-        window.location.href = host_url;
-    });
-</script>
+<?= js_container() ?>
 

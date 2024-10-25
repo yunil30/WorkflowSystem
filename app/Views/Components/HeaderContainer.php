@@ -1,6 +1,118 @@
 <!-- This is the header section -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<style>
+    header {
+        background-color: rgba(247, 248, 249, 1);
+        padding: .4rem 0 0;
+    }
+    .menu {
+        padding: .4rem 2rem;
+    }
+    header ul {
+        border-bottom: 1px solid rgba(242, 242, 242, 1);
+        list-style-type: none;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        text-align: right;
+    }
+    header li {
+        display: inline-block;
+    }
+    header li a {
+        border-radius: 5px;
+        color: rgba(0, 0, 0, .5);
+        display: block;
+        height: 44px;
+        text-decoration: none;
+    }
+    header li.menu-item a {
+        border-radius: 5px;
+        margin: 5px 0;
+        height: 38px;
+        line-height: 36px;
+        padding: .4rem .65rem;
+        text-align: center;
+    }
+    header li.menu-item a:hover,
+    header li.menu-item a:focus {
+        background-color: rgba(221, 72, 20, .2);
+        color: rgba(221, 72, 20, 1);
+    }
+    header .logo {
+        float: left;
+        height: 44px;
+        padding: .4rem .5rem;
+    }
+    header .menu-toggle {
+        display: none;
+        float: right;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    header .menu-toggle button {
+        background-color: rgba(221, 72, 20, .6);
+        border: none;
+        border-radius: 3px;
+        color: rgba(255, 255, 255, 1);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1.3rem;
+        height: 36px;
+        padding: 0;
+        margin: 11px 0;
+        overflow: visible;
+        width: 40px;
+    }
+    header .menu-toggle button:hover,
+    header .menu-toggle button:focus {
+        background-color: rgba(221, 72, 20, .8);
+        color: rgba(255, 255, 255, .8);
+    }
+    header .heroe {
+        margin: 0 auto;
+        max-width: 1100px;
+        padding: 1rem 1.75rem 1.75rem 1.75rem;
+    }
+    header .heroe h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+    header .heroe h2 {
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+    @media (max-width: 629px) {
+        header ul {
+            padding: 0;
+        }
+        header .menu-toggle {
+            padding: 0 1rem;
+        }
+        header .menu-item {
+            background-color: rgba(244, 245, 246, 1);
+            border-top: 1px solid rgba(242, 242, 242, 1);
+            margin: 0 15px;
+            width: calc(100% - 30px);
+        }
+        header .menu-toggle {
+            display: block;
+        }
+        header .hidden {
+            display: none;
+        }
+        header li.menu-item a {
+            background-color: rgba(221, 72, 20, .1);
+        }
+        header li.menu-item a:hover,
+        header li.menu-item a:focus {
+            background-color: rgba(221, 72, 20, .7);
+            color: rgba(255, 255, 255, .8);
+        }
+    }
+</style>
+
 <header>
     <div class="menu">
         <ul>
@@ -29,4 +141,28 @@
 </header>
 
 <?= js_container() ?>
+
+<script>
+    var host_url = '<?= host_url() ?>';
+
+    $('#HomePage').click(function() {
+        var module1 = host_url + 'Home/ShowModule1';
+        window.location.href = module1;
+    });
+
+    $('#DocumentPage').click(function() {
+        var module2 = host_url + 'Home/ShowModule2';
+        window.location.href = module2;
+    });
+
+    $('#CommunityPage').click(function() {
+        var module3 = host_url + 'Home/ShowModule3';
+        window.location.href = module3;
+    });
+
+    $('#AboutPage').click(function() {
+        var module4 = host_url + 'Home/ShowModule4';
+        window.location.href = module4;
+    });
+</script>
 

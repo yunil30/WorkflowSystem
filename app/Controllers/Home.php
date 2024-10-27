@@ -24,6 +24,7 @@ class Home extends BaseController {
         return view('module3');
     }
 
+    // Module4
     public function ShowModule4() {
         return view('module4');
     }

@@ -33,18 +33,25 @@ class Home extends BaseController {
         return view('module4');
     }
 
+    public function GetLatestUserCount() {
+        $user_count = $this->UserModel->GetLatestUserCount();
+
+        return $this->response->setJSON(['user_counter' => $user_count]);
+    }
+
     public function SaveTesting() {
         $requestJson = $this->postRequest->getJSON();
 
         $data = [
-            'FullName' => $requestJson->LastName . ', ' . $requestJson->FirstName . ' ' . $requestJson->MiddleName
+            'full_name'  => $requestJson->LastName . ', ' . $requestJson->FirstName . ' ' . $requestJson->MiddleName,
+            'user_name'  => $requestJson->UserName,
+            'user_email' => $requestJson->UserEmail,
+            'password'   => $requestJson->UserPassword,
+            'user_role'  => $requestJson->UserRole,
         ];
 
-        if ($this->UserModel->InsertData('testing', $data)) {
+        if ($this->UserModel->InsertData('tbl_user_access', $data)) {
             echo 'Success';
-            
-            var_dump($data);
-            return false;
         } else {
             echo 'Error: Data insertion failed.';
         }

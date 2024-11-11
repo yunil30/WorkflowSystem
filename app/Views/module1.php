@@ -43,14 +43,14 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label>User role:</label>
-                <select class="form-control">
+                <select class="form-control" id="UserRole">
                     <option value="">Select an Option</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="col-md-4 mb-3">
-                <button class="btn btn-primary mt-3" id="btnSubmit" conclick="saveData()">Submit <span class="fas fa-save"></span></button>
+                <button class="btn btn-primary mt-3" id="btnSubmit" onclick="saveData()">Submit <span class="fas fa-save"></span></button>
             </div>
         </div>
     </div>
@@ -60,15 +60,38 @@
 <script>
     var host_url = '<?php echo host_url(); ?>';
 
+    $(document).ready(function() {
+        GetLatestUserCount();
+    });
+
+    function GetLatestUserCount() {
+        axios.get(host_url + 'Home/GetLatestUserCount').then(function(res) {
+            let counter = parseInt(res.data.user_counter);
+            counter++;
+            let lastUsername = 10000 + counter;
+            const username = 'WF-' + lastUsername;
+            $("#UserName").val(username);    
+        })
+        .catch(function(error) {
+            console.error('Error fetching user count:', error);
+        });
+    }
+
     function saveData() {
         var data = {
             FirstName: $('#FirstName').val(),
             MiddleName: $('#MiddleName').val(),
-            LastName: $('#LastName').val()
+            LastName: $('#LastName').val(),
+            UserName: $('#UserName').val(),
+            UserEmail: $('#UserEmail').val(),
+            UserPassword: $('#UserPassword').val(),
+            UserRole: $('#UserRole').val()
         };
 
         axios.post(host_url+'Home/SaveTesting', data).then(function(res) {
             console.log('Successful!');
-        })
+        }).catch(function(error) {
+            console.error('Error fetching user count:', error);
+        });
     }
 </script>

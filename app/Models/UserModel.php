@@ -20,4 +20,14 @@ class UserModel extends Model {
 
         return false;
     }
+
+    public function GetLatestUserCount() {
+        $str = "SELECT COUNT(RecID) user_counter FROM tbl_user_access";
+        
+        $query = $this->db->query($str);
+
+        $result = $query->getRowArray();
+
+        return isset($result['user_counter']) ? $result['user_counter'] : 0;
+    }
 }

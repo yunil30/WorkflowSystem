@@ -42,6 +42,26 @@ class Home extends BaseController {
     public function SaveTesting() {
         $requestJson = $this->postRequest->getJSON();
 
+        if (empty($requestJson->UserName) || empty($requestJson->UserEmail) || empty($requestJson->UserPassword)) {
+            return $this->response
+                        ->setStatusCode(400)
+                        ->setJSON(['error' => 'Missing required fields.']);
+        }
+  
+        $ValidateUserName = $this->UserModel->ValidateUserName($requestJson->UserName);
+        if($ValidateUserName > 0) {
+            return $this->response
+                        ->setStatusCode(400)
+                        ->setJSON(['error' => 'Username Already Exists!']);
+        }
+
+        $ValidateUserEmail = $this->UserModel->ValidateUserEmail($requestJson->UserEmail);
+        if($ValidateUserEmail > 0) {
+            return $this->response
+                        ->setStatusCode(400)
+                        ->setJSON(['error' => 'Email address Already Exists!']);
+        }
+
         $data = [
             'full_name'  => $requestJson->LastName . ', ' . $requestJson->FirstName . ' ' . $requestJson->MiddleName,
             'user_name'  => $requestJson->UserName,
@@ -51,9 +71,13 @@ class Home extends BaseController {
         ];
 
         if ($this->UserModel->InsertData('tbl_user_access', $data)) {
-            echo 'Success';
+            return $this->response
+                        ->setStatusCode(200)
+                        ->setJSON(['message' => 'Success']);
         } else {
-            echo 'Error: Data insertion failed.';
+            return $this->response
+                        ->setStatusCode(500)
+                        ->setJSON(['error' => 'Data insertion failed.']);
         }
     }
 }

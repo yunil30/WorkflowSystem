@@ -30,4 +30,24 @@ class UserModel extends Model {
 
         return isset($result['user_counter']) ? $result['user_counter'] : 0;
     }
+
+    public function ValidateUserName($UserName) {
+        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_name = '$UserName'";
+
+        $query = $this->db->query($str);
+
+        $row = $query->getRow();
+
+        return $row->existing;
+    }
+
+    public function ValidateUserEmail($UserEmail) {
+        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_email = '$UserEmail'";
+
+        $query = $this->db->query($str);
+
+        $row = $query->getRow();
+
+        return $row->existing;
+    }
 }

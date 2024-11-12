@@ -89,9 +89,23 @@
         };
 
         axios.post(host_url+'Home/SaveTesting', data).then(function(res) {
-            console.log('Successful!');
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful!',
+                text: 'Your data has been saved successfully.',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                }
+            });
         }).catch(function(error) {
-            console.error('Error fetching user count:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: error.response?.data?.error || 'An error occurred while saving data.',
+                confirmButtonText: 'OK'
+            });
         });
     }
 </script>

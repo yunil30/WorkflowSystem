@@ -21,6 +21,14 @@ class UserModel extends Model {
         return false;
     }
 
+    public function GetUsers() {
+        $str = "SELECT RecID, full_name FullName, user_name UserName, user_status UserStatus FROM tbl_user_access;";
+        
+        $query = $this->db->query($str);
+
+        return $query->getResultArray();
+    }
+
     public function GetLatestUserCount() {
         $str = "SELECT COUNT(RecID) user_counter FROM tbl_user_access";
         

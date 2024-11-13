@@ -6,6 +6,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+<!-- jQuery and DataTables JS -->
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 <style>
     header {
@@ -152,22 +159,22 @@
     var host_url = '<?= host_url() ?>';
 
     $('#HomePage').click(function() {
-        var module1 = host_url + 'Home/ShowModule1';
+        var module1 = host_url + 'Home/ShowListOfUsers';
         window.location.href = module1;
     });
 
     $('#DocumentPage').click(function() {
-        var module2 = host_url + 'Home/ShowModule2';
+        var module2 = host_url + 'Home/ShowModule1';
         window.location.href = module2;
     });
 
     $('#CommunityPage').click(function() {
-        var module3 = host_url + 'Home/ShowModule3';
+        var module3 = host_url + 'Home/ShowModule2';
         window.location.href = module3;
     });
 
     $('#AboutPage').click(function() {
-        var module4 = host_url + 'Home/ShowModule4';
+        var module4 = host_url + 'Home/ShowModule3';
         window.location.href = module4;
     });
 </script>

@@ -17,6 +17,10 @@ class Home extends BaseController {
         return view('welcome_message');
     }
 
+    public function ShowListOfUsers() {
+        return view('ListOfUsers');
+    }
+
     public function ShowModule1() {
         return view('module1');
     }
@@ -31,6 +35,10 @@ class Home extends BaseController {
 
     public function ShowModule4() {
         return view('module4');
+    }
+
+    public function GetUsers() {
+        return $this->response->setJSON($this->UserModel->GetUsers());
     }
 
     public function GetLatestUserCount() {
@@ -66,7 +74,7 @@ class Home extends BaseController {
             'full_name'  => $requestJson->LastName . ', ' . $requestJson->FirstName . ' ' . $requestJson->MiddleName,
             'user_name'  => $requestJson->UserName,
             'user_email' => $requestJson->UserEmail,
-            'password'   => $requestJson->UserPassword,
+            'password'   => sha1(md5($requestJson->UserPassword)),
             'user_role'  => $requestJson->UserRole,
         ];
 

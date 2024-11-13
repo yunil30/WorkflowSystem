@@ -96,7 +96,9 @@
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.reload();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000)
                 }
             });
         }).catch(function(error) {

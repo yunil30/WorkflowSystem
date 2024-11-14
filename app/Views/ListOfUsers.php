@@ -4,13 +4,13 @@
     .btn-transparent {
         background-color: transparent;
         border: 1px solid transparent;
-        color: #007bff; /* Customize this for your text color */
+        color: #007bff;
     }
 
     .btn-transparent:hover {
         background-color: transparent;
-        border: 1px solid #007bff; /* Customize the border color on hover */
-        color: #0056b3; /* Customize text color on hover */
+        border: 1px solid #007bff;
+        color: #0056b3;
     }
 </style>
 <head>
@@ -23,18 +23,19 @@
 <section>
     <div>
         <div class="col-md-12">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
                 <h3>List of Users</h3>
+                <button class="btn btn-primary" id="BtnAddUser">Add User</button>
             </div>
             <div class="col-md-12 mb-3">
                 <table class="table table-hover table-bordered" id="ListOfUsersTable">
                     <thead>
                         <tr>
-                            <th style="width: 15%">#</th>
-                            <th style="width: 20%">Username</th>
-                            <th style="width: 30%">Fullname</th>
-                            <th style="width: 20%">Status</th>
-                            <th style="width: 15%">Action</th>
+                            <th class="text-left" style="width: 15%">No.</th>
+                            <th class="text-left" style="width: 20%">Username</th>
+                            <th class="text-left" style="width: 30%">Fullname</th>
+                            <th class="text-left" style="width: 20%">Status</th>
+                            <th class="text-center" style="width: 15%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="LoadData"></tbody>
@@ -56,12 +57,18 @@
 
     function ShowListOfUsers() {
         axios.get(host_url + 'Home/GetUsers').then(function(res) {
+            if ($.fn.DataTable.isDataTable('#ListOfUsersTable')) {
+                $('#ListOfUsersTable').DataTable().destroy();
+            }
+
+            $('#LoadData').empty();
+
             res.data.forEach(function(row, index) {
                 $('#LoadData').append(`
                     <tr>
-                        <td style="vertical-align: middle;">${index + 1}</td>
+                        <td class="text-left" style="vertical-align: middle;">${index + 1}</td>
                         <td style="vertical-align: middle;">${row.UserName}</td>
-                        <td style="vertical-align: middle;">${row.FullName}</td>	
+                        <td style="vertical-align: middle;">${row.FullName}</td>    
                         <td style="vertical-align: middle;">${row.UserStatus == 1 ? 'Active' : 'Inactive'}</td>
                         <td style="vertical-align: middle; display: grid; justify-items: center; grid-template-columns: repeat(3, auto);">
                             <button class="btn btn-transparent"><span class="fas fa-eye"></span></button>
@@ -71,6 +78,21 @@
                     </tr>
                 `);
             });
+
+            $('#ListOfUsersTable').DataTable({
+                searching: true,
+                pageLength: 10,
+                lengthChange: false,
+                ordering: true,
+                columnDefs: [
+                    { type: 'num', targets: 0 }
+                ]
+            });
         });
     }
+
+    $('#BtnAddUser').click(function() {
+        var module2 = host_url + 'Home/ShowModule1';
+        window.location.href = module2;
+    });
 </script>

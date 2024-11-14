@@ -9,8 +9,9 @@
 <?= ShowHeader() ?>
     <div>
         <div class="col-md-12">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
                 <h3>Module1</h3>
+                <button class="btn btn-danger" id="BtnListOfUsers">Back</button>
             </div>
             <div class="col-md-12 mb-3">
                 <div class="row">
@@ -97,8 +98,9 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     setTimeout(() => {
-                        window.location.reload();
-                    }, 1000)
+                        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+                        window.location.href = ShowListOfUsers;
+                    }, 1500)
                 }
             });
         }).catch(function(error) {
@@ -110,4 +112,9 @@
             });
         });
     }
+
+    $('#BtnListOfUsers').click(function() {
+        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+        window.location.href = ShowListOfUsers;
+    });
 </script>

@@ -5,14 +5,8 @@
 <!-- Add SweetAlert2 CSS and JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
-<!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
-<!-- jQuery and DataTables JS -->
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<!-- Add jQuery and DataTables CSS and JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 
 <style>
     header {
@@ -159,8 +153,8 @@
     var host_url = '<?= host_url() ?>';
 
     $('#HomePage').click(function() {
-        var module1 = host_url + 'Home/ShowListOfUsers';
-        window.location.href = module1;
+        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+        window.location.href = ShowListOfUsers;
     });
 
     $('#DocumentPage').click(function() {

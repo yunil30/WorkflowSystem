@@ -41,6 +41,11 @@ class Home extends BaseController {
         return $this->response->setJSON($this->UserModel->GetUsers());
     }
 
+    public function ViewUserRecord($UserNo, $UserName) {
+        $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
+        return view('ViewUserRecord', ['UserRecord' => $UserRecord]);	
+    }
+
     public function GetLatestUserCount() {
         $user_count = $this->UserModel->GetLatestUserCount();
 

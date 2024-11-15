@@ -22,9 +22,17 @@ class UserModel extends Model {
     }
 
     public function GetUsers() {
-        $str = "SELECT RecID, full_name FullName, user_name UserName, user_status UserStatus FROM tbl_user_access;";
+        $str = "SELECT RecID, full_name FullName, user_name UserName, user_status UserStatus FROM tbl_user_access";
         
         $query = $this->db->query($str);
+
+        return $query->getResultArray();
+    }
+
+    public function GetUserRecord($UserID, $UserName) {
+        $str = "SELECT * FROM tbl_user_access WHERE RecID = ? AND user_name = ?";
+        
+        $query = $this->db->query($str, [$UserID, $UserName]);
 
         return $query->getResultArray();
     }
@@ -40,9 +48,9 @@ class UserModel extends Model {
     }
 
     public function ValidateUserName($UserName) {
-        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_name = '$UserName'";
+        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_name = ?";
 
-        $query = $this->db->query($str);
+        $query = $this->db->query($str, [$UserName]);
 
         $row = $query->getRow();
 
@@ -50,9 +58,9 @@ class UserModel extends Model {
     }
 
     public function ValidateUserEmail($UserEmail) {
-        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_email = '$UserEmail'";
+        $str = "SELECT COUNT(1) existing FROM tbl_user_access WHERE user_email = ?";
 
-        $query = $this->db->query($str);
+        $query = $this->db->query($str, [$UserEmail]);
 
         $row = $query->getRow();
 

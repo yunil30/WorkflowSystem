@@ -71,9 +71,9 @@
                         <td style="vertical-align: middle;">${row.FullName}</td>    
                         <td style="vertical-align: middle;">${row.UserStatus == 1 ? 'Active' : 'Inactive'}</td>
                         <td style="vertical-align: middle; display: grid; justify-items: center; grid-template-columns: repeat(3, auto);">
-                            <button class="btn btn-transparent"><span class="fas fa-eye"></span></button>
-                            <button class="btn btn-transparent"><span class="fas fa-pencil"></span></button>
-                            <button class="btn btn-transparent"><span class="fas fa-trash"></span></button>
+                            <button class="btn btn-transparent" onclick="ViewUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-eye"></span></button>
+                            <button class="btn btn-transparent" onclick="EditUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-pencil"></span></button>
+                            <button class="btn btn-transparent" onclick="RemoveUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-trash"></span></button>
                         </td>
                     </tr>
                 `);
@@ -89,6 +89,22 @@
                 ]
             });
         });
+    }
+
+    function ViewUserRecord(UserNo, UserName) {
+        window.location.href = host_url + 'Home/ViewUserRecord/' + UserNo + '/' + UserName;
+    }
+
+    function EditUserRecord(UserNo, UserName) {
+        console.log('Edit');
+        console.log('UserNo: ', UserNo);
+        console.log('UserName: ', UserName);
+    }
+
+    function RemoveUserRecord(UserNo, UserName) {
+        console.log('Remove');
+        console.log('UserNo: ', UserNo);
+        console.log('UserName: ', UserName);
     }
 
     $('#BtnAddUser').click(function() {

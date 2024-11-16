@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
                 <h3>List of Users</h3>
-                <button class="btn btn-primary" id="BtnAddUser">Add User</button>
+                <button class="btn btn-primary" id="BtnCreateUser">Add User</button>
             </div>
             <div class="col-md-12 mb-3">
                 <table class="table table-hover table-bordered" id="ListOfUsersTable">
@@ -68,11 +68,11 @@
                     <tr>
                         <td class="text-left" style="vertical-align: middle;">${index + 1}</td>
                         <td style="vertical-align: middle;">${row.UserName}</td>
-                        <td style="vertical-align: middle;">${row.FullName}</td>    
+                        <td style="vertical-align: middle;">${row.FirstName} ${row.MiddleName} ${row.LastName}</td>    
                         <td style="vertical-align: middle;">${row.UserStatus == 1 ? 'Active' : 'Inactive'}</td>
                         <td style="vertical-align: middle; display: grid; justify-items: center; grid-template-columns: repeat(3, auto);">
                             <button class="btn btn-transparent" onclick="ViewUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-eye"></span></button>
-                            <button class="btn btn-transparent" onclick="EditUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-pencil"></span></button>
+                            <button class="btn btn-transparent" onclick="UpdateUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-pencil"></span></button>
                             <button class="btn btn-transparent" onclick="RemoveUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-trash"></span></button>
                         </td>
                     </tr>
@@ -95,20 +95,16 @@
         window.location.href = host_url + 'Home/ViewUserRecord/' + UserNo + '/' + UserName;
     }
 
-    function EditUserRecord(UserNo, UserName) {
-        console.log('Edit');
-        console.log('UserNo: ', UserNo);
-        console.log('UserName: ', UserName);
+    function UpdateUserRecord(UserNo, UserName) {
+        window.location.href = host_url + 'Home/UpdateUserRecord/' + UserNo + '/' + UserName;
     }
 
     function RemoveUserRecord(UserNo, UserName) {
-        console.log('Remove');
-        console.log('UserNo: ', UserNo);
-        console.log('UserName: ', UserName);
+        window.location.href = host_url + 'Home/RemoveUserRecord/' + UserNo + '/' + UserName;
     }
 
-    $('#BtnAddUser').click(function() {
-        var module2 = host_url + 'Home/ShowModule1';
+    $('#BtnCreateUser').click(function() {
+        var module2 = host_url + 'Home/CreateUserRecord';
         window.location.href = module2;
     });
 </script>

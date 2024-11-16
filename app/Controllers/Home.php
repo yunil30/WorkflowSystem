@@ -21,8 +21,8 @@ class Home extends BaseController {
         return view('ListOfUsers');
     }
 
-    public function ShowModule1() {
-        return view('module1');
+    public function CreateUserRecord() {
+        return view('CreateUserRecord');
     }
 
     public function ShowModule2() {
@@ -46,13 +46,23 @@ class Home extends BaseController {
         return view('ViewUserRecord', ['UserRecord' => $UserRecord]);	
     }
 
+    public function UpdateUserRecord($UserNo, $UserName) {
+        $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
+        return view('UpdateUserRecord', ['UserRecord' => $UserRecord]);	
+    }
+
+    public function RemoveUserRecord($UserNo, $UserName) {
+        $this->UserModel->UpdateData(['RecID' => $UserNo, 'user_name' => $UserName], 'tbl_user_access', ['user_status' => 0]);
+        return view('ListOfUsers');
+    }
+
     public function GetLatestUserCount() {
         $user_count = $this->UserModel->GetLatestUserCount();
 
         return $this->response->setJSON(['user_counter' => $user_count]);
     }
 
-    public function SaveTesting() {
+    public function SaveRecord() {
         $requestJson = $this->postRequest->getJSON();
 
         if (empty($requestJson->UserName) || empty($requestJson->UserEmail) || empty($requestJson->UserPassword)) {
@@ -76,11 +86,13 @@ class Home extends BaseController {
         }
 
         $data = [
-            'full_name'  => $requestJson->LastName . ', ' . $requestJson->FirstName . ' ' . $requestJson->MiddleName,
-            'user_name'  => $requestJson->UserName,
-            'user_email' => $requestJson->UserEmail,
-            'password'   => sha1(md5($requestJson->UserPassword)),
-            'user_role'  => $requestJson->UserRole,
+            'first_name'  => $requestJson->FirstName,
+            'middle_name' => $requestJson->MiddleName,
+            'last_name'   => $requestJson->LastName,
+            'user_name'   => $requestJson->UserName,
+            'user_email'  => $requestJson->UserEmail,
+            'password'    => sha1(md5($requestJson->UserPassword)),
+            'user_role'   => $requestJson->UserRole,
         ];
 
         if ($this->UserModel->InsertData('tbl_user_access', $data)) {
@@ -91,6 +103,34 @@ class Home extends BaseController {
             return $this->response
                         ->setStatusCode(500)
                         ->setJSON(['error' => 'Data insertion failed.']);
+        }
+    }
+
+    public function UpdateRecord() {
+        $requestJson = $this->postRequest->getJSON();
+
+        if (empty($requestJson->UserEmail)) {
+            return $this->response
+                        ->setStatusCode(400)
+                        ->setJSON(['error' => 'Missing required fields.']);
+        }
+
+        $data = [
+            'first_name'  => $requestJson->FirstName,
+            'middle_name' => $requestJson->MiddleName,
+            'last_name'   => $requestJson->LastName,
+            'user_email'  => $requestJson->UserEmail,
+            'user_role'   => $requestJson->UserRole,
+        ];
+
+        if ($this->UserModel->UpdateData(['RecID' => $requestJson->UserNo, 'user_name' => $requestJson->UserName], 'tbl_user_access', $data)) {
+            return $this->response
+                        ->setStatusCode(200)
+                        ->setJSON(['message' => 'Success']);
+        } else {
+            return $this->response
+                        ->setStatusCode(500)
+                        ->setJSON(['error' => 'Failed to update.']);
         }
     }
 }

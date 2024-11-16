@@ -12,17 +12,20 @@ class UserModel extends Model {
         $this->db = \Config\Database::connect();
     }
     
-    public function InsertData($table,$data=[]) {
+    public function InsertData($table, $data=[]) {
         $builder = $this->db->table($table);
-        if ($builder->insert($data)) {
-            return $this->db->insertID();
-        }
 
-        return false;
+        return $builder->insert($data);
+    }
+
+    public function UpdateData($where=[], $table, $data=[]) {
+        $builder = $this->db->table($table);
+
+        return $builder->where($where)->update($data);
     }
 
     public function GetUsers() {
-        $str = "SELECT RecID, full_name FullName, user_name UserName, user_status UserStatus FROM tbl_user_access";
+        $str = "SELECT RecID, first_name FirstName, middle_name MiddleName, last_name LastName, user_name UserName, user_status UserStatus FROM tbl_user_access";
         
         $query = $this->db->query($str);
 

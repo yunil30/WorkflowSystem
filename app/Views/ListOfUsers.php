@@ -100,7 +100,32 @@
     }
 
     function RemoveUserRecord(UserNo, UserName) {
-        window.location.href = host_url + 'Home/RemoveUserRecord/' + UserNo + '/' + UserName;
+        var data = {
+            UserNo: UserNo, 
+            UserName: UserName
+        }
+
+        axios.post(host_url + 'Home/RemoveUserRecord', data).then(function(res) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful!',
+                text: UserName + ' has been deactivated.',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 500)
+                }
+            });
+        }).catch(function(error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: error.response?.data?.error || 'An error occurred while removing the user record.',
+                confirmButtonText: 'OK'
+            });
+        });
     }
 
     $('#BtnCreateUser').click(function() {

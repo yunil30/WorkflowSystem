@@ -95,7 +95,7 @@
                     setTimeout(() => {
                         var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
                         window.location.href = ShowListOfUsers;
-                    }, 1500)
+                    }, 1000)
                 }
             });
         }).catch(function(error) {

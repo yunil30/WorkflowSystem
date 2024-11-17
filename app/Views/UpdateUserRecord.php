@@ -73,7 +73,6 @@
             UserNo: UserRecord[0].RecID
         };
 
-        console.log('Data: ', data);
         axios.post(host_url+'Home/UpdateRecord', data).then(function(res) {
             Swal.fire({
                 icon: 'success',
@@ -84,7 +83,7 @@
                 if (result.isConfirmed) {
                     setTimeout(() => {
                         window.location.reload()
-                    }, 1500)
+                    }, 1000)
                 }
             });
         }).catch(function(error) {

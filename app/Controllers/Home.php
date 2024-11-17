@@ -43,17 +43,14 @@ class Home extends BaseController {
 
     public function ViewUserRecord($UserNo, $UserName) {
         $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
+        
         return view('ViewUserRecord', ['UserRecord' => $UserRecord]);	
     }
 
     public function UpdateUserRecord($UserNo, $UserName) {
         $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
-        return view('UpdateUserRecord', ['UserRecord' => $UserRecord]);	
-    }
 
-    public function RemoveUserRecord($UserNo, $UserName) {
-        $this->UserModel->UpdateData(['RecID' => $UserNo, 'user_name' => $UserName], 'tbl_user_access', ['user_status' => 0]);
-        return view('ListOfUsers');
+        return view('UpdateUserRecord', ['UserRecord' => $UserRecord]);	
     }
 
     public function GetLatestUserCount() {
@@ -115,22 +112,52 @@ class Home extends BaseController {
                         ->setJSON(['error' => 'Missing required fields.']);
         }
 
-        $data = [
-            'first_name'  => $requestJson->FirstName,
-            'middle_name' => $requestJson->MiddleName,
-            'last_name'   => $requestJson->LastName,
-            'user_email'  => $requestJson->UserEmail,
-            'user_role'   => $requestJson->UserRole,
+        $fields = [
+            'RecID'     => $requestJson->UserNo,
+            'user_name' => $requestJson->UserName
         ];
 
-        if ($this->UserModel->UpdateData(['RecID' => $requestJson->UserNo, 'user_name' => $requestJson->UserName], 'tbl_user_access', $data)) {
+        $data = [
+            'first_name'    => $requestJson->FirstName,
+            'middle_name'   => $requestJson->MiddleName,
+            'last_name'     => $requestJson->LastName,
+            'user_email'    => $requestJson->UserEmail,
+            'user_role'     => $requestJson->UserRole,
+            'date_modified' => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->UserModel->UpdateData($fields, 'tbl_user_access', $data)) {
             return $this->response
                         ->setStatusCode(200)
                         ->setJSON(['message' => 'Success']);
         } else {
             return $this->response
                         ->setStatusCode(500)
-                        ->setJSON(['error' => 'Failed to update.']);
+                        ->setJSON(['error' => 'Failed to update!']);
+        }
+    }
+
+    public function RemoveUserRecord() {
+        $requestJson = $this->postRequest->getJSON();
+
+        $fields = [
+            'RecID'     => $requestJson->UserNo,
+            'user_name' => $requestJson->UserName
+        ];
+
+        $data = [
+            'user_status'   => 0,
+            'date_modified' => date('Y-m-d H:i:s')
+        ];
+
+        if($this->UserModel->UpdateData($fields, 'tbl_user_access', $data)) {
+            return $this->response
+                        ->setStatusCode(200)
+                        ->setJSON(['message' => 'Success!']);
+        } else {
+            return $this->response
+                        ->setStatusCode(500)
+                        ->setJSON(['error' => 'Failed!']);
         }
     }
 }

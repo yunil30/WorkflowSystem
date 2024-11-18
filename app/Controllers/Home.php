@@ -25,8 +25,8 @@ class Home extends BaseController {
         return view('CreateUserRecord');
     }
 
-    public function ShowModule2() {
-        return view('module2');
+    public function LoginForm() {
+        return view('LoginForm');
     }
 
     public function ShowModule3() {
@@ -37,8 +37,8 @@ class Home extends BaseController {
         return view('module4');
     }
 
-    public function GetUsers() {
-        return $this->response->setJSON($this->UserModel->GetUsers());
+    public function GetActiveUsers() {
+        return $this->response->setJSON($this->UserModel->GetActiveUsers());
     }
 
     public function ViewUserRecord($UserNo, $UserName) {

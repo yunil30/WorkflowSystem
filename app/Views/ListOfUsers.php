@@ -56,7 +56,7 @@
     });
 
     function ShowListOfUsers() {
-        axios.get(host_url + 'Home/GetUsers').then(function(res) {
+        axios.get(host_url + 'Home/GetActiveUsers').then(function(res) {
             if ($.fn.DataTable.isDataTable('#ListOfUsersTable')) {
                 $('#ListOfUsersTable').DataTable().destroy();
             }

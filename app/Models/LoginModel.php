@@ -12,12 +12,20 @@ class LoginModel extends Model {
         $this->db = \Config\Database::connect();
     }
 
-    public function GetActiveUsers() {
-        $str = "SELECT RecID, first_name FirstName, middle_name MiddleName, last_name LastName, user_name UserName, user_status UserStatus 
-                    FROM tbl_user_access 
-                WHERE user_status = 1";
-        
-        $query = $this->db->query($str);
+    public function LoginUser($username, $password) {
+        $this->Username = $username;
+        $this->Password = $password;
+
+        $this->str = "SELECT RecID, first_name FirstName, middle_name MiddleName, last_name LastName, user_name UserName, user_status UserStatus 
+                        FROM tbl_user_access 
+                    WHERE user_name = :username: AND password = :password: AND user_status = 1";
+
+        $this->KeyBindings = [
+            'username' => $this->Username,
+            'password' => $this->Password
+        ];
+
+        $query = $this->db->query($this->str, $this->KeyBindings);
 
         return $query->getResultArray();
     }

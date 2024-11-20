@@ -65,7 +65,7 @@ class Home extends BaseController {
         if (empty($requestJson->UserName) || empty($requestJson->UserEmail) || empty($requestJson->UserPassword)) {
             return $this->response
                         ->setStatusCode(400)
-                        ->setJSON(['error' => 'Missing required fields.']);
+                        ->setJSON(['error' => 'Missing required fields!']);
         }
   
         $ValidateUserName = $this->UserModel->ValidateUserName($requestJson->UserName);

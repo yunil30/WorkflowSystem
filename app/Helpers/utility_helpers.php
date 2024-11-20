@@ -8,6 +8,12 @@
         }
     }
 
+    if (!function_exists('hashPassword')) {
+        function hashPassword($password) {
+            return sha1(md5($password));
+        }
+    }
+
     if (!function_exists('ShowHeader')) {
         function ShowHeader() {
             return view('Components/HeaderContainer');

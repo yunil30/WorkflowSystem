@@ -119,6 +119,13 @@
                 text: 'Your data has been saved successfully.',
                 confirmButtonText: 'OK'
             })
+        }).catch(function(error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: error.response?.data?.error || 'An error occurred while saving data.',
+                confirmButtonText: 'OK'
+            });
         });
     });
 </script>

@@ -7,6 +7,7 @@ use App\Models\LoginModel;
 class Login extends BaseController {
     private $postRequest;
     private $encrypter;
+    private $session;
     private $UserModel;
     private $LoginModel;
 
@@ -14,6 +15,7 @@ class Login extends BaseController {
         helper('utility_helpers');
         $this->postRequest = \Config\Services::request();
         $this->encrypter = \Config\Services::encrypter();
+        $this->session = \Config\Services::session();
         $this->UserModel = new UserModel();
 		$this->LoginModel = new LoginModel();
 	}
@@ -39,6 +41,9 @@ class Login extends BaseController {
         $this->response->setCookie('uname', $encryptedUsername, 10); 
         $this->response->setCookie('pword', $encryptedPassword, 10);
 
+        $this->session->set('session_username', $result[0]['UserName']);
+        $this->session->set('session_userrole', $result[0]['UserRole']);
+        
         return $this->response
                     ->setStatusCode(200)
                     ->setJSON(['message' => 'Login successful']);

@@ -118,7 +118,14 @@
                 title: 'Successful!',
                 text: 'Your data has been saved successfully.',
                 confirmButtonText: 'OK'
-            })
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(() => {
+                        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+                        window.location.href = ShowListOfUsers;
+                    }, 1000)
+                }
+            });
         }).catch(function(error) {
             Swal.fire({
                 icon: 'error',

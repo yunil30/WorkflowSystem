@@ -38,8 +38,8 @@ class Login extends BaseController {
         $encryptedUsername = $this->encrypter->encrypt($requestJson->UserName);
         $encryptedPassword = $this->encrypter->encrypt($requestJson->PassWord);
 
-        $this->response->setCookie('uname', $encryptedUsername, 10); 
-        $this->response->setCookie('pword', $encryptedPassword, 10);
+        $this->response->setCookie('uname', $encryptedUsername, 600); 
+        $this->response->setCookie('pword', $encryptedPassword, 600);
 
         $this->session->set('session_username', $result[0]['UserName']);
         $this->session->set('session_userrole', $result[0]['UserRole']);
@@ -47,5 +47,15 @@ class Login extends BaseController {
         return $this->response
                     ->setStatusCode(200)
                     ->setJSON(['message' => 'Login successful']);
+    }
+    
+    public function Logout() {
+        $this->session->remove('session_username');
+        $this->session->remove('session_userrole');
+
+        $this->response->deleteCookie('uname');
+        $this->response->deleteCookie('pword');
+
+        return view('LoginForm');
     }
 }

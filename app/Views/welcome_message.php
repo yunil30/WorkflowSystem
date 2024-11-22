@@ -31,10 +31,8 @@
 <!-- Header section of the page -->
 <?= ShowHeader() ?>
 
-
 <!-- Footer section of the page -->
 <?= ShowFooter() ?>
-
 <script {csp-script-nonce}>
     document.getElementById("menuToggle").addEventListener('click', toggleMenu);
 

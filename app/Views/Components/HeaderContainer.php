@@ -141,7 +141,7 @@
                 <a href="javascript:void(0);" id="CommunityPage">Community</a>
             </li>
             <li class="menu-item hidden">
-                <a href="javascript:void(0);" id="AboutPage">About</a>
+                <a href="javascript:void(0);" id="BtnLogout">Logout</a>
             </li>
         </ul>
     </div>
@@ -158,18 +158,17 @@
     });
 
     $('#DocumentPage').click(function() {
-        var LoginForm = host_url + 'Home/LoginForm';
-        window.location.href = LoginForm;
+        var testingPage = host_url + 'Home/TestingModule';
+        window.location.href = testingPage;
     });
 
     $('#CommunityPage').click(function() {
-        var module3 = host_url + 'Home/ShowModule3';
-        window.location.href = module3;
+        var testingPage = host_url + 'Home/TestingModule';
+        window.location.href = testingPage;
     });
 
-    $('#AboutPage').click(function() {
-        var module4 = host_url + 'Home/ShowModule4';
-        window.location.href = module4;
+    $('#BtnLogout').click(function() {
+        window.location.href = host_url + 'Login/Logout';
     });
 </script>
 

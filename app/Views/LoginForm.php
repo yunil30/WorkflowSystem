@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workflow System</title>
 </head>
-<?= ShowHeader() ?>
+<!-- This is the header section -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<!-- Add SweetAlert2 CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Add jQuery and DataTables CSS and JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 <style>
     input {
         width: 100%;
@@ -87,7 +95,7 @@
                 </div>
                 <div id="div-username">
                     <label for="username"><i class="fa fa-user"></i> Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username">
+                    <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" value="WF-10001  ">
                 </div>
                 <div id="div-password">
                     <label for="password"><i class="fa fa-lock"></i> Password</label>
@@ -101,6 +109,7 @@
     </div>
 </body>
 </html>
+<?= js_container() ?>
 <script>
     var host_url = '<?php echo host_url(); ?>';
 

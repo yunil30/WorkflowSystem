@@ -5,11 +5,13 @@ use App\Models\UserModel;
 
 class Home extends BaseController {
     private $postRequest;
+    private $session;
     private $UserModel;
 
     public function __construct() {
         helper('utility_helpers');
         $this->postRequest = \Config\Services::request();
+        $this->session = \Config\Services::session();
         $this->UserModel = new UserModel();
     }
 
@@ -18,23 +20,24 @@ class Home extends BaseController {
     }
 
     public function ShowListOfUsers() {
-        return view('ListOfUsers');
-    }
-
-    public function CreateUserRecord() {
-        return view('CreateUserRecord');
-    }
-
-    public function LoginForm() {
+        if ($this->session->has('session_username')) {
+            return view('UserMaintenance/ListOfUsers');
+        }
         return view('LoginForm');
     }
 
-    public function ShowModule3() {
-        return view('module3');
+    public function CreateUserRecord() {
+        if ($this->session->has('session_username')) {
+            return view('UserMaintenance/CreateUserRecord');
+        }
+        return view('LoginForm');
     }
 
-    public function ShowModule4() {
-        return view('module4');
+    public function TestingModule() {
+        if ($this->session->has('session_username')) {
+            return view('TestingModule');
+        }
+        return view('LoginForm');
     }
 
     public function GetActiveUsers() {
@@ -43,14 +46,20 @@ class Home extends BaseController {
 
     public function ViewUserRecord($UserNo, $UserName) {
         $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
-        
-        return view('ViewUserRecord', ['UserRecord' => $UserRecord]);	
+
+        if ($this->session->has('session_username')) {
+            return view('UserMaintenance/ViewUserRecord', ['UserRecord' => $UserRecord]);	
+        }
+        return view('LoginForm');
     }
 
     public function UpdateUserRecord($UserNo, $UserName) {
         $UserRecord = $this->UserModel->GetUserRecord($UserNo, $UserName);
 
-        return view('UpdateUserRecord', ['UserRecord' => $UserRecord]);	
+        if ($this->session->has('session_username')) {
+            return view('UserMaintenance/UpdateUserRecord', ['UserRecord' => $UserRecord]);	
+        }
+        return view('LoginForm');
     }
 
     public function GetLatestUserCount() {

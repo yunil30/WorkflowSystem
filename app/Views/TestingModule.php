@@ -7,9 +7,11 @@
 </head>
 <body>
 <?= ShowHeader() ?>
-<section>
-    <h3>Module2</h3>
-</section>
+<div class="col-md-12">
+    <section>
+        <h3>Testing Module</h3>
+    </section>
+</div>
 <?= ShowFooter() ?>
 </body>
 </html>

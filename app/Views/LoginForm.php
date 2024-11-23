@@ -95,7 +95,7 @@
                 </div>
                 <div id="div-username">
                     <label for="username"><i class="fa fa-user"></i> Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" value="WF-10001  ">
+                    <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" value="WF-10001">
                 </div>
                 <div id="div-password">
                     <label for="password"><i class="fa fa-lock"></i> Password</label>

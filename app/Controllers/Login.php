@@ -56,7 +56,6 @@ class Login extends BaseController {
         $this->response->deleteCookie('uname');
         $this->response->deleteCookie('pword');
 
-        var_dump('hello');
         return view('LoginForm');
     }
 }

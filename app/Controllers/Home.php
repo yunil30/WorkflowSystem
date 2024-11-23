@@ -16,7 +16,7 @@ class Home extends BaseController {
     }
 
     public function index() {
-        return view('LoginForm');
+        return view('index');
     }
 
     public function ShowListOfUsers() {

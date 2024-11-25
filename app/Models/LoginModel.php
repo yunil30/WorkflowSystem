@@ -35,4 +35,12 @@ class LoginModel extends Model {
 
         return $query->getResultArray();
     }
+
+    public function GetUserMenu() {
+        $this->str =  "SELECT * FROM tbl_user_menu";
+
+        $query = $this->db->query($this->str);
+
+        return $query->getResultArray();
+    }
 }

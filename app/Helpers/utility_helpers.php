@@ -1,7 +1,6 @@
 <?php
     define('BASE_URL', 'http://localhost:8020/');
     
-
     if (!function_exists('host_url')) {
         function host_url() {
             return BASE_URL;
@@ -23,6 +22,12 @@
     if (!function_exists('ShowFooter')) {
         function ShowFooter() {
             return view('Components/FooterContainer');
+        }
+    }
+
+    if (!function_exists('css_container')) {
+        function css_container() {
+            return view('Components/StyleContainer');
         }
     }
 

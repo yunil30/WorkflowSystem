@@ -16,7 +16,10 @@ class Home extends BaseController {
     }
 
     public function index() {
-        return view('index');
+        if($this->session->has('session_username')) {
+            return view('index1');
+        }
+        return view('LoginForm');
     }
 
     public function ShowListOfUsers() {

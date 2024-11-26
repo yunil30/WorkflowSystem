@@ -130,8 +130,8 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     setTimeout(() => {
-                        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
-                        window.location.href = ShowListOfUsers;
+                        var index = host_url + 'Home/index';
+                        window.location.href = index;
                     }, 1000)
                 }
             });

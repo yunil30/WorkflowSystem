@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workflow System</title>
+    <?= css_container() ?>
 </head>
 <body>
 <?= ShowHeader() ?>
+<main class="page-main">
     <div>
         <div class="col-md-12">
             <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
@@ -46,6 +48,7 @@
             </div>
         </div>
     </div>
+</main>
 <?= ShowFooter() ?>
 </body>
 </html>

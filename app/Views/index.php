@@ -22,7 +22,8 @@
     }
 
     body.sidebar-minimize{
-        grid-template-columns: 4rem 1fr;
+        /* grid-template-columns: 4rem 1fr; */
+        grid-template-columns: 0rem 1fr;
         background-color: #d5d8dc;
     }
 
@@ -75,7 +76,7 @@
     .page-sidebar .menu-li:hover{
         font-size: 1.3rem;
         font-weight: bold;
-        background-color: rgba(242, 243, 244, 1);
+        background-color: #f2f3f4;
     }
 
     .page-sidebar .menu-header{
@@ -83,6 +84,11 @@
         font-weight: bold;
         padding: 1rem 1rem 0 1rem;
         margin-top: .5rem; 
+    }
+
+    .page-sidebar .menu-li a{
+        color: #17202a;
+        text-decoration: none;
     }
 
     /* main */
@@ -141,10 +147,20 @@
         axios.get(host_url + 'Login/GetUserMenu').then(function(res) {
             res.data.forEach(function(row) {
                 $('.menu-ul').append(`
-                    <li class="menu-li" id="menu${row.RecID}">${row.menu_name}</li>
+                    <li class="menu-li" onclick="BtnShowPage('${row.menu_page}')" id="menu${row.RecID}">
+                        <a href="javascript:void(0)">
+                            ${row.menu_name}
+                        </a>
+                    </li>
                 `);
             });
         });
+    }
+
+    function BtnShowPage(path) {
+        console.log('This is the Page: ', host_url + path);
+        var Page = host_url + path;
+        window.location.href = Page;
     }
 
     $('document').ready(function() {

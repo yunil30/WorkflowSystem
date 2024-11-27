@@ -1,18 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .btn-transparent {
-        background-color: transparent;
-        border: 1px solid transparent;
-        color: #007bff;
-    }
-
-    .btn-transparent:hover {
-        background-color: transparent;
-        border: 1px solid #007bff;
-        color: #0056b3;
-    }
-</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,26 +10,24 @@
 <?= ShowHeader() ?>
 <main class="page-main">
     <section>
-        <div>
-            <div class="col-md-12">
-                <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
-                    <h3>List of Users</h3>
-                    <button class="btn btn-primary" id="BtnCreateUser">Add User</button>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <table class="table table-hover table-bordered" id="ListOfUsersTable">
-                        <thead>
-                            <tr>
-                                <th class="text-left" style="width: 15%">No.</th>
-                                <th class="text-left" style="width: 20%">Username</th>
-                                <th class="text-left" style="width: 30%">Fullname</th>
-                                <th class="text-left" style="width: 20%">Status</th>
-                                <th class="text-center" style="width: 15%">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="LoadData"></tbody>
-                    </table>
-                </div>
+        <div class="col-md-12">
+            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
+                <h3>List of Users</h3>
+                <button class="btn btn-primary" id="BtnCreateUser">Add User</button>
+            </div>
+            <div class="col-md-12 mb-3">
+                <table class="table table-hover table-bordered" id="ListOfUsersTable">
+                    <thead>
+                        <tr>
+                            <th class="text-left" style="width: 15%">No.</th>
+                            <th class="text-left" style="width: 20%">Username</th>
+                            <th class="text-left" style="width: 30%">Fullname</th>
+                            <th class="text-left" style="width: 20%">Status</th>
+                            <th class="text-center" style="width: 15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="LoadData"></tbody>
+                </table>
             </div>
         </div>
     </section>

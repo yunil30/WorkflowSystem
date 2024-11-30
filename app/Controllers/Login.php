@@ -43,6 +43,7 @@ class Login extends BaseController {
 
         $this->session->set('session_username', $result[0]['UserName']);
         $this->session->set('session_userrole', $result[0]['UserRole']);
+        $this->session->set('session_password', $result[0]['UserPass']);
         
         return $this->response
                     ->setStatusCode(200)
@@ -52,7 +53,8 @@ class Login extends BaseController {
     public function Logout() {
         $this->session->remove('session_username');
         $this->session->remove('session_userrole');
-
+        $this->session->remove('session_password');
+        
         $this->response->deleteCookie('uname');
         $this->response->deleteCookie('pword');
 

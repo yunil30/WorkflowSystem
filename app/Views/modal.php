@@ -1,32 +1,19 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workflow System</title>
-</head>
+</head> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
 <style>
-    body {
+    /* body {
         font-family: "Poppins", sans-serif;
         letter-spacing: 1px;
         color: #17202a;
-    }
-
-    /* .modal {
-        display: none;
-        background-color: #ffffff;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 100;
-        border: 1px solid #d9d9d9;
-        border-radius: 5px;
-        width: 380px;
     } */
 
     .modal {
@@ -44,8 +31,9 @@
     }
 
     .modal-header .modal-title {
-        font-size: 1.25rem;
-        font-weight: bold;
+        letter-spacing: 0.1rem;
+        font-size: 20px;
+        font-weight: 500;
     }
 
     .modal-header .BtnCloseModal {
@@ -71,7 +59,8 @@
         border-radius: 5px;
         cursor: pointer;
         font-family: "Poppins", sans-serif;
-        letter-spacing: 2px;
+        font-size: 15px;
+        letter-spacing: 0.1rem;
         color: #d5d8dc;
         padding: 8px;
     }
@@ -86,7 +75,8 @@
         border-radius: 5px;
         cursor: pointer;
         font-family: "Poppins", sans-serif;
-        letter-spacing: 2px;
+        font-size: 15px;
+        letter-spacing: 0.1rem;
         color: #d5d8dc;
         padding: 8px;
     }
@@ -121,28 +111,11 @@
         box-shadow: 0px 0px 3px rgba(23, 32, 42, 0.8);
     }
 </style>
-<body>
-    <!-- <button id="ShowModal">Open Modal</button>
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <label class="modal-title">Modal Title</label>
-            <span class="BtnCloseModal">&times;</span>
-        </div>
-        <div class="modal-body">
-            <p>This is the content of the modal.</p>
-        </div>
-        <div class="modal-button">
-            <button id="BtnSubmitModal">Submit</button>
-            <button id="BtnCloseModal">Cancel</button>
-        </div>
-    </div> -->
-
-    <!-- Button trigger modal -->
+<!-- <body>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
-    </button>
+    </button> -->
 
-    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -151,21 +124,16 @@
                     <span class="BtnCloseModal" data-dismiss="modal">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <!-- <label>Enter your password</label> -->
+                    <label>Enter your password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" id="BtnSubmitModal">Submit</button>
-                    <button type="button" class="btn" id="BtnCloseModal" data-dismiss="modal">Close</button>
+                    <button type="button" id="BtnSubmitModal">Submit</button>
+                    <button type="button" id="BtnCloseModal" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-</body>
-<?= js_container() ?>
-</html>
-<script>
-    // $('#ShowModal').click(function() {
-    //     $('#modal').show();
-    // });
-</script>
+
+<!-- </body> -->
+<!-- </html> -->

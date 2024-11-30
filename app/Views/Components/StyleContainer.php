@@ -124,4 +124,75 @@
     }
 </style>
 
+<style>
+    .modal {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+    }
+
+    .modal-header {
+        padding: 20px 20px 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header .modal-title {
+        letter-spacing: 0.1rem;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .modal-header .BtnCloseModal {
+        cursor: pointer;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        padding: 0px 20px 0px 20px;
+    }
+
+    .modal-footer {
+        padding: 10px 20px 20px 20px;
+        display: flex;
+        justify-content: end;
+        gap: 1px;
+    }
+    
+    #BtnSubmitModal {
+        background-color: #17202a;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.1rem;
+        color: #d5d8dc;
+        padding: 8px;
+    }
+
+    #BtnSubmitModal:hover {
+        box-shadow: inset 0px 0px 50px rgb(0, 0, 0, 0.5)
+    }
+
+    #BtnCloseModal {
+        background-color: #c0392b;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.1rem;
+        color: #d5d8dc;
+        padding: 8px;
+    }
+
+    #BtnCloseModal:hover {
+        box-shadow: inset 0px 0px 50px rgb(0, 0, 0, 0.5)
+    }
+</style>
+
 <?= js_container() ?>

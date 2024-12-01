@@ -35,7 +35,6 @@
 <?= ShowFooter() ?>
 </body>
 </html>
-
 <script>
     var host_url = '<?php echo host_url(); ?>';
 

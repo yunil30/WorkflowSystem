@@ -8,7 +8,6 @@ class Login extends BaseController {
     private $postRequest;
     private $encrypter;
     private $session;
-    private $UserModel;
     private $LoginModel;
 
 	public function __construct() {
@@ -16,7 +15,6 @@ class Login extends BaseController {
         $this->postRequest = \Config\Services::request();
         $this->encrypter = \Config\Services::encrypter();
         $this->session = \Config\Services::session();
-        $this->UserModel = new UserModel();
 		$this->LoginModel = new LoginModel();
 	}
 

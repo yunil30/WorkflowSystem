@@ -44,11 +44,29 @@
                 </select>
             </div>
             <div class="col-md-4 mb-3">
-                <button class="btn btn-primary mt-3" id="btnSubmit" onclick="updateData()">Update <span class="fas fa-pencil"></span></button>
+                <button class="btn btn-primary mt-3" id="btnSubmit">Update <span class="fas fa-pencil"></span></button>
             </div>
         </div>
     </div>
 </main>
+<div class="modal fade" id="UpdateUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title">Identity Verification</label>
+                <span class="BtnClose" data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <label>Enter your password.</label>
+                <input type="password" id="UpdateUserPass" class="form-control form-control-sm">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="BtnGreen" id="BtnUpdateUser">Confirm</button>
+                <button type="button" class="BtnRed" id="BtnCancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= ShowFooter() ?>
 </body>
 </html>
@@ -98,6 +116,13 @@
             });
         });
     }
+
+    $('#btnSubmit').click(function() {
+        $('#btnSubmit').attr({
+            'data-toggle': 'modal',
+            'data-target': '#UpdateUserModal'
+        });
+    });
 
     $('#BtnListOfUsers').click(function() {
         var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';

@@ -36,10 +36,4 @@
             return view('Components/JavascriptContainer');
         }
     }
-
-    if (!function_exists('ShowModal')) {
-        function ShowModal() {
-            return view('Views/modal');
-        }
-    }
 ?>

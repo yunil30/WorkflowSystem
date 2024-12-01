@@ -3,3 +3,5 @@
         <p>&copy; <?= date('Y') ?> Workflow Corporation</p>
     </div>
 </footer>
+
+<?=  js_container() ?>

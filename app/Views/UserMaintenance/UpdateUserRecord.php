@@ -59,10 +59,11 @@
             <div class="modal-body">
                 <label>Enter your password.</label>
                 <input type="password" id="UpdateUserPass" class="form-control form-control-sm">
+                <input type="hidden" id="user_key" class="form-control form-control-sm" value="<?= session('session_password') ?>">
             </div>
             <div class="modal-footer">
-                <button type="button" class="BtnGreen" id="BtnUpdateUser">Confirm</button>
-                <button type="button" class="BtnRed" id="BtnCancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="BtnConfirm btn-success" id="BtnUpdateUser">Confirm</button>
+                <button type="button" class="BtnCancel btn-danger" id="BtnCancel" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -122,6 +123,30 @@
             'data-toggle': 'modal',
             'data-target': '#UpdateUserModal'
         });
+    });
+
+    $('#BtnUpdateUser').click(function() {
+        if($('#UpdateUserPass').val() == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: 'Password is required!',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
+
+        if(CryptoJS.SHA1(CryptoJS.MD5($('#UpdateUserPass').val()).toString()) != $('#user_key').val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: 'Invalid Password!',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
+
+        updateData();
     });
 
     $('#BtnListOfUsers').click(function() {

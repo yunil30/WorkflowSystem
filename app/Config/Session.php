@@ -41,7 +41,7 @@ class Session extends BaseConfig
      * Setting to 0 (zero) means expire when the browser is closed.
      */
     // 7200
-    public int $expiration = 600;
+    public int $expiration = 1000;
 
     /**
      * --------------------------------------------------------------------------

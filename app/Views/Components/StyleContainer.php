@@ -75,28 +75,33 @@
     }
 
     .page-sidebar .menu-li{
+        font-family: "Poppins", sans-serif;
         font-size: 1rem;
-        font-weight: bold;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
         padding: 1rem;
         margin-top: 1rem; 
     }
 
     .page-sidebar .menu-li:hover{
-        font-size: 1.3rem;
-        font-weight: bold;
         background-color: #f2f3f4;
-    }
-
-    .page-sidebar .menu-header{
-        font-size: 1rem;
-        font-weight: bold;
-        padding: 1rem 1rem 0 1rem;
-        margin-top: .5rem; 
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
     }
 
     .page-sidebar .menu-li a{
         color: #17202a;
         text-decoration: none;
+    }
+
+    .page-sidebar .menu-header{
+        font-family: "Poppins", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        padding: 1rem 1rem 0 1rem;
+        margin-top: .5rem; 
     }
 
     /* main */
@@ -169,37 +174,18 @@
         gap: 1px;
     }
 
-    .BtnGreen {
-        background-color: #28b463;
+    .BtnConfirm {
         border: none;
         border-radius: 5px;
-        color: #d5d8dc;
         letter-spacing: 0.1rem;
         padding: 8px;
     }
 
-    .BtnBlue {
-        background-color: #17202a;
+    .BtnCancel {
         border: none;
         border-radius: 5px;
-        color: #d5d8dc;
         letter-spacing: 0.1rem;
         padding: 8px;
-    }
-
-    .BtnRed {
-        background-color: #c0392b;
-        border: none;
-        border-radius: 5px;
-        color: #d5d8dc;
-        letter-spacing: 0.1rem;
-        padding: 8px;
-    }
-
-    .BtnGreen:hover,
-    .BtnBlue:hover,
-    .BtnRed:hover {
-        box-shadow: inset 0px 0px 50px rgb(0, 0, 0, 0.5);
     }
 </style>
 

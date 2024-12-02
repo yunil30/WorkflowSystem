@@ -24,8 +24,8 @@
                 <label>Would you like to logout?</label>
             </div>
             <div class="modal-footer">
-                <button type="button" class="BtnBlue" id="BtnYesLogout">Confirm</button>
-                <button type="button" class="BtnRed" id="BtnNoLogout" data-dismiss="modal">Cancel</button>
+                <button type="button" class="BtnConfirm btn-success" id="BtnYesLogout">Confirm</button>
+                <button type="button" class="BtnCancel btn-danger" id="BtnNoLogout" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

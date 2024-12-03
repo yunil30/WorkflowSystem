@@ -36,8 +36,8 @@ class Login extends BaseController {
         $encryptedUsername = $this->encrypter->encrypt($requestJson->UserName);
         $encryptedPassword = $this->encrypter->encrypt($requestJson->PassWord);
 
-        $this->response->setCookie('uname', $encryptedUsername, 1000); 
-        $this->response->setCookie('pword', $encryptedPassword, 1000);
+        $this->response->setCookie('uname', $encryptedUsername, 7200); 
+        $this->response->setCookie('pword', $encryptedPassword, 7200);
 
         $this->session->set('session_username', $result[0]['UserName']);
         $this->session->set('session_userrole', $result[0]['UserRole']);

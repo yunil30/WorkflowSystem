@@ -29,163 +29,221 @@
         padding-right: 0 !important
     }
 
+    /* Body Minimize Portion */
     body.sidebar-minimize{
         /* grid-template-columns: 4rem 1fr; */
         grid-template-columns: 0rem 1fr;
         background-color: #d5d8dc;
     }
 
-    /* header */
-    .page-header{
+    /* Header Portion */
+    .page-header {
+        grid-area: header;
+        background-color: #17202a;
         position: sticky;
         top: 0;
         z-index: 1000;
         box-shadow: 0 1px 10px rgba(0, 0, 0, .5);
-        grid-area: header;
-        background-color: #17202a;
+
+        .logo {
+            float: left;
+            height: 44px;
+            padding: .4rem .5rem;
+        }
+
+        #icon-menu {
+            cursor: pointer;
+            float: left;
+            font-size: 2rem;
+            color: #f2f3f4;
+            padding: .4rem .5rem;
+            margin-right: 1rem;
+        }
     }
 
-    .page-header .logo{
-        float: left;
-        height: 44px;
-        padding: .4rem .5rem;
-    }
-
-    .page-header #icon-menu{
-        float: left;
-        font-size: 2rem;
-        color: #f2f3f4;
-        padding: .4rem .5rem;
-        margin-right: 1rem;
-    }
-
-    /* sidebar */
-    .page-sidebar{
+    /* Sidebar Portion */
+    .page-sidebar {
         grid-area: sidebar;
         background-color: #d5d8dc;
         padding: 1rem 0 1rem 1rem;
+        
+        .menu-header {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+            padding: 1rem 1rem 0 1rem;
+            margin-top: .5rem; 
+        }
+        
+        .menu-ul {
+            list-style-type: none;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+            text-align: left;
+        }
+
+        .menu-li {
+            font-family: "Poppins", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+            padding: 1rem;
+            margin-top: 1rem;
+
+            &:hover {
+                background-color: #f2f3f4;
+                font-size: 1.3rem;
+                font-weight: 600;
+                letter-spacing: 0.1rem;
+            }
+
+            a {
+                color: #17202a;
+                text-decoration: none;
+            }
+        }
     }
 
-    .page-sidebar .menu-ul{
-        list-style-type: none;
-        margin: 0;
-        overflow: hidden;
-        padding: 0;
-        text-align: left;
-    }
-
-    .page-sidebar .menu-li{
-        font-family: "Poppins", sans-serif;
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-        padding: 1rem;
-        margin-top: 1rem; 
-    }
-
-    .page-sidebar .menu-li:hover{
-        background-color: #f2f3f4;
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-    }
-
-    .page-sidebar .menu-li a{
-        color: #17202a;
-        text-decoration: none;
-    }
-
-    .page-sidebar .menu-header{
-        font-family: "Poppins", sans-serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-        padding: 1rem 1rem 0 1rem;
-        margin-top: .5rem; 
-    }
-
-    /* main */
-    .page-main{
+    /* Main Portion */
+    .page-main {
         grid-area: main;
         background-color: #f2f3f4;
         padding: 1rem;
+
+        .page-main-header {
+            background-color: #e7e7e7;
+            border: 0.1rem solid #d9d9d9;
+            border-radius: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+
+            h3 {
+                font-family: "Poppins", sans-serif;
+                font-size: 1.50rem;
+                font-weight: 600;
+                letter-spacing: 0.1rem;
+                margin: 0;
+            }
+
+            .page-main-header-btn {
+                font-family: "Poppins", sans-serif;
+                font-size: 0.9rem;
+                font-weight: 400;
+                letter-spacing: 0.1rem;
+                border: none;
+                border-radius: 5px;
+                padding: 8px;
+            }
+        }
+
+        .page-main-content {
+            background-color: #e7e7e7;
+            border: 0.1rem solid #d9d9d9;
+            border-radius: 0.3rem;
+            padding: 1rem 1rem 1rem 1rem;
+
+            label {
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.1rem;
+            }
+
+            input {
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                font-weight: 400;
+                letter-spacing: 0.1rem;
+            }
+
+            .page-main-content-btn {
+                font-family: "Poppins", sans-serif;
+                font-size: 0.9rem;
+                font-weight: 400;
+                letter-spacing: 0.1rem;
+                border: none;
+                border-radius: 5px;
+                padding: 8px;
+            }
+        }
     }
 
-    /* footer */
-    .page-footer{
+    /* Footer Portion */
+    .page-footer {
         grid-area: footer;
         background-color: #17202a;
         text-align: center;
+
+        .copyrights {
+            padding: 1rem;
+        }
+
+        p {
+            font-family: "Poppins", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            color: #f2f3f4;
+            margin: 0;
+        }
     }
 
-    .page-footer .copyrights{
-        color: #f2f3f4;
-        padding: 1rem;
-    }
-
-    .page-footer p{
-        margin: 0;
-    }
-
-    /* Modal portion */
+    /* Modal Portion */
     .modal {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400px;
-    }
 
-    .modal-header {
-        font-family: "Poppins", sans-serif;
-        letter-spacing: 0.1rem;
-        border: none;
-        padding: 15px 20px 5px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .modal-header {
+            font-family: "Poppins", sans-serif;
+            letter-spacing: 0.1rem;
+            border: none;
+            padding: 15px 20px 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .modal-header .modal-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
 
-    .modal-header .BtnClose {
-        cursor: pointer;
-        font-size: 1.5rem;
-        font-weight: 400;
-    }
+        .modal-body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+            padding: 15px 20px 15px 20px;
+        }
 
-    .modal-body {
-        font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        letter-spacing: 0.1rem;
-        padding: 15px 20px 15px 20px;
-    }
+        .modal-footer {
+            font-family: "Poppins", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            border: none;
+            padding: 5px 20px 15px 20px;
+            display: flex;
+            justify-content: end;
+            gap: 1px;
+        }
 
-    .modal-footer {
-        font-family: "Poppins", sans-serif;
-        font-size: 0.9rem;
-        font-weight: 300;
-        border: none;
-        padding: 5px 20px 15px 20px;
-        display: flex;
-        justify-content: end;
-        gap: 1px;
-    }
+        .modal-btn {
+            border: none;
+            border-radius: 5px;
+            letter-spacing: 0.1rem;
+            padding: 8px;
+        }
 
-    .BtnConfirm {
-        border: none;
-        border-radius: 5px;
-        letter-spacing: 0.1rem;
-        padding: 8px;
-    }
-
-    .BtnCancel {
-        border: none;
-        border-radius: 5px;
-        letter-spacing: 0.1rem;
-        padding: 8px;
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
     }
 </style>
 

@@ -11,44 +11,46 @@
 <main class="page-main">
     <div>
         <div class="col-md-12">
-            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
+            <div class="col-md-12 page-main-header mb-3">
                 <h3>Create User</h3>
-                <button class="btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>
+                <button class="btn page-main-header-btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>
             </div>
-            <div class="col-md-4 mb-3">
-                <label>First name:</label>
-                <input type="text" class="form-control" id="FirstName">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>Middle name:</label>
-                <input type="text" class="form-control" id="MiddleName">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>Last name:</label>
-                <input type="text" class="form-control" id="LastName">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>Username:</label>
-                <input type="text" class="form-control" id="UserName">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>Email address:</label>
-                <input type="text" class="form-control" id="UserEmail">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>Password:</label>
-                <input type="password" class="form-control" id="UserPassword">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label>User role:</label>
-                <select class="form-control" id="UserRole">
-                    <option value="">Select an Option</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <div class="col-md-4 mb-3">
-                <button class="btn btn-primary mt-3" id="btnSubmit">Submit <span class="fas fa-save"></span></button>
+            <div class="col-md-12 page-main-content mb-3">
+                <div class="col-md-4 mb-3 p-0">
+                    <label>First name:</label>
+                    <input type="text" class="form-control" id="FirstName">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Middle name:</label>
+                    <input type="text" class="form-control" id="MiddleName">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Last name:</label>
+                    <input type="text" class="form-control" id="LastName">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Username:</label>
+                    <input type="text" class="form-control" id="UserName">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Email address:</label>
+                    <input type="text" class="form-control" id="UserEmail">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Password:</label>
+                    <input type="password" class="form-control" id="UserPassword">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>User role:</label>
+                    <select class="form-control" id="UserRole">
+                        <option value="">Select an Option</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <button class="btn page-main-content-btn btn-primary mt-3" id="btnSubmit">Submit <span class="fas fa-save"></span></button>
+                </div>
             </div>
         </div>
     </div>
@@ -58,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <label class="modal-title">Identity Verification</label>
-                <span class="BtnClose" data-dismiss="modal">&times;</span>
+                <span class="modal-close" data-dismiss="modal">&times;</span>
             </div>
             <div class="modal-body">
                 <label>Enter your password.</label>
@@ -66,8 +68,8 @@
                 <input type="hidden" id="user_key" class="form-control form-control-sm" value="<?= session('session_password') ?>">
             </div>
             <div class="modal-footer">
-                <button type="button" class="BtnConfirm btn-success" id="BtnCreateUser">Confirm</button>
-                <button type="button" class="BtnCancel btn-danger" id="BtnCancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="modal-btn btn-success" id="BtnCreateUser">Confirm</button>
+                <button type="button" class="modal-btn btn-danger" id="BtnCancel" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -147,7 +149,7 @@
             });
             return false;
         }
-
+        
         if(CryptoJS.SHA1(CryptoJS.MD5($('#CreateUserPass').val()).toString()) != $('#user_key').val()) {
             Swal.fire({
                 icon: 'error',

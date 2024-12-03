@@ -11,11 +11,11 @@
 <main class="page-main">
     <section>
         <div class="col-md-12">
-            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center">
+            <div class="col-md-12 page-main-header mb-3">
                 <h3>List of Users</h3>
-                <button class="btn btn-primary" id="BtnCreateUser">Add User</button>
+                <button class="btn page-main-header-btn btn-primary" id="BtnCreateUser">Add User</button>
             </div>
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 page-main-content mb-3">
                 <table class="table table-hover table-bordered" id="ListOfUsersTable">
                     <thead>
                         <tr>

@@ -55,7 +55,7 @@
             cursor: pointer;
             float: left;
             font-size: 2rem;
-            color: #f2f3f4;
+            color: #ffffff;
             padding: .4rem .5rem;
             margin-right: 1rem;
         }
@@ -93,7 +93,7 @@
             margin-top: 1rem;
 
             &:hover {
-                background-color: #f2f3f4;
+                background-color: #ffffff;
                 font-size: 1.3rem;
                 font-weight: 600;
                 letter-spacing: 0.1rem;
@@ -109,9 +109,10 @@
     /* Main Portion */
     .page-main {
         grid-area: main;
-        background-color: #f2f3f4;
+        background-color: #ffffff;
         padding: 1rem;
 
+        /* Main page header */
         .page-main-header {
             background-color: #e7e7e7;
             border: 0.1rem solid #d9d9d9;
@@ -140,11 +141,12 @@
             }
         }
 
+        /* Main page conttent */
         .page-main-content {
             background-color: #e7e7e7;
             border: 0.1rem solid #d9d9d9;
             border-radius: 0.3rem;
-            padding: 1rem 1rem 1rem 1rem;
+            padding: 1rem 1rem 0rem 1rem;
 
             label {
                 font-family: "Poppins", sans-serif;
@@ -158,6 +160,16 @@
                 font-size: 1rem;
                 font-weight: 400;
                 letter-spacing: 0.1rem;
+
+                &:hover,
+                &:focus {
+                    border: 0.1rem solid #e74c3c;
+                    border-color: #17202a;
+                    letter-spacing: 0.1rem;
+                    color: #17202a;
+                    outline: none;
+                    box-shadow: 0px 0px 3px rgba(23, 32, 42, 0.8);
+                }
             }
 
             .page-main-content-btn {
@@ -169,6 +181,38 @@
                 border-radius: 5px;
                 padding: 8px;
             }
+        }
+
+        thead {
+            background-color: #17202a;
+
+            tr {
+                th {
+                    font-family: "Poppins", sans-serif;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: #d9d9d9;
+                    letter-spacing: 0.1rem; 
+                }
+            }
+        }
+
+        tbody {
+            background-color: #ffffff;
+
+            tr {
+                td {
+                    font-family: "Poppins", sans-serif;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    letter-spacing: 0.1rem; 
+                }
+            }
+        }
+
+        #ListOfUsersTable_info {
+            font-family: "Poppins", sans-serif;
+            letter-spacing: 0.1rem; 
         }
     }
 
@@ -187,7 +231,7 @@
             font-size: 0.9rem;
             font-weight: 300;
             letter-spacing: 0.1rem;
-            color: #f2f3f4;
+            color: #ffffff;
             margin: 0;
         }
     }
@@ -237,6 +281,10 @@
             border-radius: 5px;
             letter-spacing: 0.1rem;
             padding: 8px;
+
+            &:active {
+                transform: translateY(2px);
+            }
         }
 
         .modal-close {

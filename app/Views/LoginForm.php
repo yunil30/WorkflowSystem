@@ -143,6 +143,18 @@
         color: #d5d8dc;
         width: 50%;
         padding: .8rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #34495e;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: #1c2833;
+            transform: translateY(2px);
+        }
     }
 </style>
 <body>

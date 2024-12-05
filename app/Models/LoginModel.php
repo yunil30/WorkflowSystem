@@ -38,7 +38,21 @@ class LoginModel extends Model {
     }
 
     public function GetUserMenu() {
-        $this->str =  "SELECT * FROM tbl_user_menu";
+        $this->str =  "SELECT 
+                            parent.RecID AS parent_id,
+                            parent.menu_name AS parent_menu,
+                            child.RecID AS child_id,
+                            child.menu_name AS child_menu,
+                            child.menu_page AS child_page
+                        FROM 
+                            tbl_user_menu AS parent
+                        LEFT JOIN 
+                            tbl_user_menu AS child 
+                            ON parent.RecID = child.parent_menu
+                        WHERE 
+                            parent.menu_type = 'parent'
+                        ORDER BY 
+                            parent.RecID, child.menu_name";
 
         $query = $this->db->query($this->str);
 

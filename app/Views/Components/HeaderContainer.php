@@ -40,36 +40,80 @@
 
     function GetUserMenu() {
         axios.get(host_url + 'Login/GetUserMenu').then(function(res) {
+            let menus = {};  // To store parent menus and their children
+            console.log(res.data);
+            
+
             res.data.forEach(function(row) {
-                $('.menu-ul').append(`
-                    <li class="menu-li" onclick="BtnShowPage('${row.menu_page}', '${row.RecID}')" id="menu${row.RecID}">
-                        <a href="javascript:void(0)">
-                            ${row.menu_name}
-                        </a>
-                    </li>
-                `);
+                // Check if parent already exists in the menus object
+                if (!menus[row.parent_id]) {
+                    menus[row.parent_id] = {
+                        parent_menu: row.parent_menu,
+                        children: []
+                    };
+                }
+
+                // If child exists, push it to the parent's children array
+                if (row.child_id) {
+                    menus[row.parent_id].children.push({
+                        child_id: row.child_id,
+                        child_menu: row.child_menu,
+                        child_page: row.child_page
+                    });
+                }
             });
-        });
+
+            // Now render the menus
+            Object.keys(menus).forEach(function(parentId) {
+                let parent = menus[parentId];
+
+                // Create the parent menu item
+                let parentHtml = `
+                    <ul class="menu-ul" id="menu${parentId}">
+                        <li class="menu-item">
+                            <a href="javascript:void(0)">${parent.parent_menu}</a>
+                `;
+
+                // If there are children, add them
+                if (parent.children.length > 0) {
+                    parentHtml += '<ul class="submenu">';
+                    parent.children.forEach(function(child) {
+                        parentHtml += `
+                            <li><a onclick="BtnShowPage('${child.child_page}', ${child.child_id})">${child.child_menu}</a></li>
+                        `;
+                    });
+                    parentHtml += '</ul>';
+                }
+
+                parentHtml += '</li></ul>';
+
+                // Append the parent menu to the sidebar
+                $('.page-sidebar').append(parentHtml);
+            });
+        })
     }
+
 
     function BtnShowPage(path, menu) {
         var Page = host_url + path; 
+        console.log(Page);
         
-        if (menu == 5) {
-            var $MenuButton = $('#menu5');
-            var $BtnYesLogout = $('#BtnYesLogout');
+        
+        // if (menu == 5) {
+        //     var $MenuButton = $('#menu5');
+        //     var $BtnYesLogout = $('#BtnYesLogout');
 
-            $MenuButton.attr({
-                'data-toggle': 'modal',
-                'data-target': '#LogoutModal'
-            });
+        //     $MenuButton.attr({
+        //         'data-toggle': 'modal',
+        //         'data-target': '#LogoutModal'
+        //     });
 
-            $BtnYesLogout.click(function() {
-                window.location.href = Page;
-            });
-        } else {
+        //     $BtnYesLogout.click(function() {
+        //         window.location.href = Page;
+        //     });
+        // } else {
             window.location.href = Page;   
-        }
+        // }
     }
 
     $('document').ready(function() {

@@ -82,26 +82,31 @@
             overflow: hidden;
             padding: 0;
             text-align: left;
-        }
-
-        .menu-li {
-            font-family: "Poppins", sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.1rem;
-            padding: 1rem;
-            margin-top: 1rem;
-
-            &:hover {
-                background-color: #ffffff;
-                font-size: 1.3rem;
-                font-weight: 600;
-                letter-spacing: 0.1rem;
-            }
 
             a {
                 color: #17202a;
                 text-decoration: none;
+            }
+        }
+
+        .menu-item {
+            font-family: "Poppins", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+            padding: 1rem 1rem 0rem 1rem; 
+            
+            .submenu {
+                list-style-type: none;
+                margin: 0;
+                overflow: hidden;
+                padding: 0;
+                text-align: left;
+
+                li {
+                    padding: 0.3rem 1rem 0.3rem 1rem;
+                    cursor: pointer; 
+                }
             }
         }
     }

@@ -8,9 +8,9 @@
 </header>
 
 <aside class="page-sidebar">
-    <ul class="menu-ul">
+    <!-- <ul class="menu-ul">
         <li class="menu-header">MENU</li>
-    </ul>
+    </ul> -->
 </aside>
 
 <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,8 +41,6 @@
     function GetUserMenu() {
         axios.get(host_url + 'Login/GetUserMenu').then(function(res) {
             let menus = {};  // To store parent menus and their children
-            console.log(res.data);
-            
 
             res.data.forEach(function(row) {
                 // Check if parent already exists in the menus object
@@ -69,20 +67,18 @@
 
                 // Create the parent menu item
                 let parentHtml = `
-                    <ul class="menu-ul" id="menu${parentId}">
-                        <li class="menu-item">
-                            <a href="javascript:void(0)">${parent.parent_menu}</a>
+                    <ul class="menu-ul" id="menu${parentId}" onclick="ShowSubMenu(${parentId})">${parent.parent_menu}</ul>
+                    <ul class="submenu_ul" id="submenu${parentId}">
                 `;
 
                 // If there are children, add them
                 if (parent.children.length > 0) {
-                    parentHtml += '<ul class="submenu">';
+                    parentHtml += ``;
                     parent.children.forEach(function(child) {
                         parentHtml += `
-                            <li><a onclick="BtnShowPage('${child.child_page}', ${child.child_id})">${child.child_menu}</a></li>
+                            <li><a onclick="BtnShowPage('${child.child_page}')">${child.child_menu}</a></li>
                         `;
                     });
-                    parentHtml += '</ul>';
                 }
 
                 parentHtml += '</li></ul>';
@@ -93,28 +89,36 @@
         })
     }
 
+    function ShowSubMenu(submenu) {
+        if (submenu == 5) {
+            var $MenuButton = $('#menu5');
+            var $BtnYesLogout = $('#BtnYesLogout');
 
-    function BtnShowPage(path, menu) {
-        var Page = host_url + path; 
-        console.log(Page);
-        
-        
-        // if (menu == 5) {
-        //     var $MenuButton = $('#menu5');
-        //     var $BtnYesLogout = $('#BtnYesLogout');
+            $MenuButton.attr({
+                'data-toggle': 'modal',
+                'data-target': '#LogoutModal'
+            });
 
-        //     $MenuButton.attr({
-        //         'data-toggle': 'modal',
-        //         'data-target': '#LogoutModal'
-        //     });
-
-        //     $BtnYesLogout.click(function() {
-        //         window.location.href = Page;
-        //     });
-        // } else {
-            window.location.href = Page;   
-        // }
+            $BtnYesLogout.click(function() {
+                window.location.href = Page;
+            });
+        } else {
+            $('#submenu' + submenu).slideToggle(300, function() {
+                // Callback after the animation is complete
+                if ($(this).is(':visible')) {
+                    console.log('show');
+                } else {
+                    console.log('hide');
+                }
+            });
+        }
     }
+
+    function BtnShowPage(path) {
+        var Page = host_url + path; 
+        window.location.href = Page;   
+    }
+
 
     $('document').ready(function() {
         GetUserMenu();

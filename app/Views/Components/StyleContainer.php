@@ -39,7 +39,7 @@
     /* Header Portion */
     .page-header {
         grid-area: header;
-        background-color: #17202a;
+        background-color: #1f2328;
         position: sticky;
         top: 0;
         z-index: 1000;
@@ -65,48 +65,33 @@
     .page-sidebar {
         grid-area: sidebar;
         background-color: #d5d8dc;
-        padding: 1rem 0 1rem 1rem;
-        
-        .menu-header {
-            font-family: "Poppins", sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: 0.1rem;
-            padding: 1rem 1rem 0 1rem;
-            margin-top: .5rem; 
-        }
+        padding: 1rem 1rem 1rem 1rem;
         
         .menu-ul {
-            list-style-type: none;
-            margin: 0;
-            overflow: hidden;
-            padding: 0;
+            cursor: pointer; 
             text-align: left;
+            padding: 1rem 1rem 0rem 1rem;
+            margin: 0rem;
+            list-style-type: none;
+            text-decoration: none;
 
             a {
-                color: #17202a;
-                text-decoration: none;
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.1rem;
+                color: #1f2328;
             }
         }
 
-        .menu-item {
-            font-family: "Poppins", sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.1rem;
-            padding: 1rem 1rem 0rem 1rem; 
+        .submenu_ul {
+            list-style-type: none;
+            text-align: left;
+            padding: 0rem;
             
-            .submenu {
-                list-style-type: none;
-                margin: 0;
-                overflow: hidden;
-                padding: 0;
-                text-align: left;
-
-                li {
-                    padding: 0.3rem 1rem 0.3rem 1rem;
-                    cursor: pointer; 
-                }
+            li {
+                padding: 0.3rem 1rem 0.3rem 1rem;
+                cursor: pointer; 
             }
         }
     }
@@ -169,9 +154,9 @@
                 &:hover,
                 &:focus {
                     border: 0.1rem solid #e74c3c;
-                    border-color: #17202a;
+                    border-color: #1f2328;
                     letter-spacing: 0.1rem;
-                    color: #17202a;
+                    color: #1f2328;
                     outline: none;
                     box-shadow: 0px 0px 3px rgba(23, 32, 42, 0.8);
                 }
@@ -189,7 +174,7 @@
         }
 
         thead {
-            background-color: #17202a;
+            background-color: #1f2328;
 
             tr {
                 th {
@@ -224,7 +209,7 @@
     /* Footer Portion */
     .page-footer {
         grid-area: footer;
-        background-color: #17202a;
+        background-color: #1f2328;
         text-align: center;
 
         .copyrights {

@@ -10,7 +10,7 @@
 <?= ShowHeader() ?>
 <main class="page-main">
     <div>
-        <div class="col-md-12">
+        <div class="col-md-12 main-content">
             <div class="col-md-12 page-main-header mb-3">
                 <h3>Update User</h3>
                 <button class="btn page-main-header-btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>

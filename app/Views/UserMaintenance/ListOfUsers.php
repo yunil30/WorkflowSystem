@@ -10,12 +10,12 @@
 <?= ShowHeader() ?>
 <main class="page-main">
     <section>
-        <div class="col-md-12">
-            <div class="col-md-12 page-main-header mb-3">
+        <div class="col-md-12 main-content">
+            <div class="col-md-12 page-main-header mb-0">
                 <h3>List of Users</h3>
                 <button class="btn page-main-header-btn btn-primary" id="BtnCreateUser">Add User</button>
             </div>
-            <div class="col-md-12 page-main-content mb-3">
+            <div class="col-md-12 page-main-content mb-0">
                 <table class="table table-hover table-bordered" id="ListOfUsersTable">
                     <thead>
                         <tr>

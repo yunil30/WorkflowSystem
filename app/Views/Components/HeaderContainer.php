@@ -8,9 +8,7 @@
 </header>
 
 <aside class="page-sidebar">
-    <!-- <ul class="menu-ul">
-        <li class="menu-header">MENU</li>
-    </ul> -->
+    <label class="menu-header">Menu</label>
 </aside>
 
 <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,16 +65,16 @@
 
                 // Create the parent menu item
                 let parentHtml = `
-                    <ul class="menu-ul" id="menu${parentId}" onclick="ShowSubMenu(${parentId})">${parent.parent_menu}</ul>
+                    <ul class="menu-ul" id="menu${parentId}" onclick="ShowSubMenu(${parentId})">${parent.parent_menu}<i class="fas fa-angle-down" id="menu-icon${parentId}"></i></ul>
                     <ul class="submenu_ul" id="submenu${parentId}">
                 `;
-
+    
                 // If there are children, add them
                 if (parent.children.length > 0) {
                     parentHtml += ``;
                     parent.children.forEach(function(child) {
                         parentHtml += `
-                            <li><a onclick="BtnShowPage('${child.child_page}')">${child.child_menu}</a></li>
+                            <li onclick="BtnShowPage('${child.child_page}')">${child.child_menu}</li>
                         `;
                     });
                 }
@@ -103,14 +101,7 @@
                 window.location.href = Page;
             });
         } else {
-            $('#submenu' + submenu).slideToggle(300, function() {
-                // Callback after the animation is complete
-                if ($(this).is(':visible')) {
-                    console.log('show');
-                } else {
-                    console.log('hide');
-                }
-            });
+            $('#submenu' + submenu).slideToggle(500);
         }
     }
 

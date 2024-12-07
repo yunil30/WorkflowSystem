@@ -66,21 +66,38 @@
         grid-area: sidebar;
         background-color: #d5d8dc;
         padding: 1rem 1rem 1rem 1rem;
+
+        .menu-header {
+            font-family: "Poppins", sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1rem;
+            padding: 0rem 0.5rem 0.5rem 0.5rem;
+            margin: 0rem;
+        }
         
         .menu-ul {
             cursor: pointer; 
-            text-align: left;
-            padding: 1rem 1rem 0rem 1rem;
+            font-family: "Poppins", sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1rem;
+            padding: 1rem 0.5rem 1rem 0.5rem;
             margin: 0rem;
             list-style-type: none;
             text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-            a {
-                font-family: "Poppins", sans-serif;
-                font-size: 1rem;
-                font-weight: 500;
-                letter-spacing: 0.1rem;
-                color: #1f2328;
+            &:hover {
+                background-color: #ffffff;
+                border-radius: 0.3rem;
+                font-size: 1.01rem;
+            }
+
+            &:active {
+                font-size: 1.05rem;
             }
         }
 
@@ -88,10 +105,26 @@
             list-style-type: none;
             text-align: left;
             padding: 0rem;
+            margin: 0rem;
             
             li {
-                padding: 0.3rem 1rem 0.3rem 1rem;
-                cursor: pointer; 
+                cursor: pointer;
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.1rem;
+                padding: 1rem 0.5rem 1rem 1.1rem;
+                margin: 0rem;
+
+                &:hover {
+                    background-color: #ffffff;
+                    border-radius: 0.3rem;
+                    font-size: 1.01rem;
+                }
+
+                &:active {
+                    font-size: 1.05rem;
+                }
             }
         }
     }
@@ -102,15 +135,21 @@
         background-color: #ffffff;
         padding: 1rem;
 
-        /* Main page header */
-        .page-main-header {
-            background-color: #e7e7e7;
+        .main-content {
+            background-color: #ffffff;
             border: 0.1rem solid #d9d9d9;
             border-radius: 0.3rem;
+            padding: 1rem;
+            box-shadow: 0px 1px 10px #00000047;
+        }
+
+        /* Main page header */
+        .page-main-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 1rem 0.5rem 1rem;
+            padding: 0.5rem 1rem 0rem 1rem;
+            margin: 0;
 
             h3 {
                 font-family: "Poppins", sans-serif;
@@ -133,9 +172,6 @@
 
         /* Main page conttent */
         .page-main-content {
-            background-color: #e7e7e7;
-            border: 0.1rem solid #d9d9d9;
-            border-radius: 0.3rem;
             padding: 1rem 1rem 0rem 1rem;
 
             label {

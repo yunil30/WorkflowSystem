@@ -309,7 +309,7 @@
             padding: 8px;
 
             &:active {
-                transform: translateY(2px);
+                transform: translateY(1px);
             }
         }
 

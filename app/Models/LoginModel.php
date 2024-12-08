@@ -43,7 +43,8 @@ class LoginModel extends Model {
                             parent.menu_name AS parent_menu,
                             child.RecID AS child_id,
                             child.menu_name AS child_menu,
-                            child.menu_page AS child_page
+                            child.menu_page AS child_page,
+                            child.menu_index AS child_index
                         FROM 
                             tbl_user_menu AS parent
                         LEFT JOIN 
@@ -52,7 +53,7 @@ class LoginModel extends Model {
                         WHERE 
                             parent.menu_type = 'parent'
                         ORDER BY 
-                            parent.RecID, child.menu_name";
+                            parent.RecID, child.menu_name, child.menu_index ASC";
 
         $query = $this->db->query($this->str);
 

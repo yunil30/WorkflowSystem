@@ -54,7 +54,8 @@
                     menus[row.parent_id].children.push({
                         child_id: row.child_id,
                         child_menu: row.child_menu,
-                        child_page: row.child_page
+                        child_page: row.child_page,
+                        child_index: row.child_index
                     });
                 }
             });
@@ -62,6 +63,11 @@
             // Now render the menus
             Object.keys(menus).forEach(function(parentId) {
                 let parent = menus[parentId];
+
+                // Sort the children by `child_index` before rendering
+                parent.children.sort(function(a, b) {
+                    return a.child_index - b.child_index;
+                });
 
                 // Create the parent menu item
                 let parentHtml = `
@@ -74,12 +80,12 @@
                     parentHtml += ``;
                     parent.children.forEach(function(child) {
                         parentHtml += `
-                            <li onclick="BtnShowPage('${child.child_page}')">${child.child_menu}</li>
+                            <li onclick="BtnShowPage('${child.child_page}', ${child.child_id})" id="child-menu${child.child_id}" data-index="${child.child_index}">${child.child_menu}</li>
                         `;
                     });
                 }
 
-                parentHtml += '</li></ul>';
+                parentHtml += '</ul>';
 
                 // Append the parent menu to the sidebar
                 $('.page-sidebar').append(parentHtml);
@@ -88,8 +94,14 @@
     }
 
     function ShowSubMenu(submenu) {
-        if (submenu == 5) {
-            var $MenuButton = $('#menu5');
+        $('#submenu' + submenu).slideToggle(500);
+    }
+
+    function BtnShowPage(path, pageid) {
+        var Page = host_url + path;
+       
+        if (pageid == 4) {
+            var $MenuButton = $('#child-menu4');
             var $BtnYesLogout = $('#BtnYesLogout');
 
             $MenuButton.attr({
@@ -101,13 +113,8 @@
                 window.location.href = Page;
             });
         } else {
-            $('#submenu' + submenu).slideToggle(500);
+            window.location.href = Page;
         }
-    }
-
-    function BtnShowPage(path) {
-        var Page = host_url + path; 
-        window.location.href = Page;   
     }
 
 

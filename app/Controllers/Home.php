@@ -173,4 +173,29 @@ class Home extends BaseController {
                         ->setJSON(['error' => 'Failed!']);
         }
     }
+
+    public function CreateFolder() {
+        $folder = create_folder();
+        $path = './WfsUploads/'.$folder;
+
+        var_dump($path);
+        return false;
+        
+        $fileFields = [
+            'attachedMemorandum'
+        ];
+
+        if (!is_dir($path)) {
+            if (mkdir($path, 0777, true)) {
+                foreach ($fileFields as $field) {
+                    $file = $this->postRequest->getFile($field);
+
+                    if ($file && $file->getSize() > 0) {
+                        $newFileName = uniqid() . '.' . $file->getExtension();
+                        $file->move($path, $newFileName);
+                    } 
+                }
+            }
+        }
+    }
 }

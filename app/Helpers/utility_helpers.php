@@ -1,6 +1,6 @@
 <?php
     define('BASE_URL', 'http://localhost:8020/');
-    
+
     if (!function_exists('host_url')) {
         function host_url() {
             return BASE_URL;
@@ -35,5 +35,20 @@
         function js_container() {
             return view('Components/JavascriptContainer');
         }
+    }
+
+    if (!function_exists('create_folder')) {
+        function create_folder() {
+            $Year = date('Y');
+            $Num = rand(1,100).time();
+   
+            return $Year.'-'.$Num;
+        }
+    }
+
+    if (!function_exists('upload_url')) {
+        function upload_url() {
+            return BASE_URL . 'public/WfsUploads/';
+        }    
     }
 ?>

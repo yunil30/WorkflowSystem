@@ -209,29 +209,31 @@
             }
         }
 
-        thead {
-            background-color: #1f2328;
+        #ListOfUsersTable {
+            thead {
+                background-color: #1f2328;
 
-            tr {
-                th {
-                    font-family: "Poppins", sans-serif;
-                    font-size: 1rem;
-                    font-weight: 500;
-                    color: #d9d9d9;
-                    letter-spacing: 0.1rem; 
+                tr {
+                    th {
+                        font-family: "Poppins", sans-serif;
+                        font-size: 1rem;
+                        font-weight: 500;
+                        color: #d9d9d9;
+                        letter-spacing: 0.1rem; 
+                    }
                 }
             }
-        }
 
-        tbody {
-            background-color: #ffffff;
+            tbody {
+                background-color: #ffffff;
 
-            tr {
-                td {
-                    font-family: "Poppins", sans-serif;
-                    font-size: 1rem;
-                    font-weight: 400;
-                    letter-spacing: 0.1rem; 
+                tr {
+                    td {
+                        font-family: "Poppins", sans-serif;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        letter-spacing: 0.1rem; 
+                    }
                 }
             }
         }

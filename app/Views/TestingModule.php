@@ -15,37 +15,43 @@
             <button class="btn page-main-header-btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>
         </div>
         <div class="col-md-12 page-main-content mb-3">  
+         
             <div class="col-md-4 mb-3 p-0">
-                <label>First name:</label>
-                <input type="text" class="form-control" id="FirstName" disabled>
+                <label>Attachment:</label>
+                <input type="file" class="form-control-file" id="AttachMentlength">
             </div>
-            <div class="col-md-4 mb-3 p-0">
-                <label>Middle name:</label>
-                <input type="text" class="form-control" id="MiddleName" disabled>
-            </div>
-            <div class="col-md-4 mb-3 p-0">
-                <label>Last name:</label>
-                <input type="text" class="form-control" id="LastName" disabled>
-            </div>
-            <div class="col-md-4 mb-3 p-0">
-                <label>Username:</label>
-                <input type="text" class="form-control" id="UserName" disabled>
-            </div>
-            <div class="col-md-4 mb-3 p-0">
-                <label>Email address:</label>
-                <input type="text" class="form-control" id="UserEmail" disabled>
-            </div>
-            <div class="col-md-4 mb-3 p-0">
-                <label>User role:</label>
-                <select class="form-control" id="UserRole" disabled>
-                    <option value="">Select an Option</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
+            <button onclick="CreateFolder()">Create</button>
         </div>
     </div>
 </main>
 <?= ShowFooter() ?>
 </body>
 </html>
+<script>
+    var host_url = '<?php echo host_url(); ?>';
+
+    function CreateFolder() {
+        var fileInput = $('#AttachMentlength'); // Select the file input element
+        var file = fileInput.prop('files')[0]; // Get the first file from the input
+
+        if (!file) {
+            console.log('No attachment found!');
+            return;
+        }
+
+        var formdata = new FormData();
+        formdata.append('attachedMemorandum', file); // Append the file to the FormData
+
+        console.log('Attachment: ', file.name);
+
+        // axios.post(host_url + 'Home/CreateFolder', formdata, {
+        //     headers: { 'Content-Type': 'multipart/form-data' }
+        // })
+        // .then(function(res) {
+        //     console.log(res.data);
+        // })
+        // .catch(function(err) {
+        //     console.error('Error uploading file:', err);
+        // });
+    }
+</script>

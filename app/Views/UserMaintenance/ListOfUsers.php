@@ -57,7 +57,7 @@
                         <td style="vertical-align: middle;">${row.UserName}</td>
                         <td style="vertical-align: middle;">${row.FirstName} ${row.MiddleName} ${row.LastName}</td>    
                         <td style="vertical-align: middle;">${row.UserStatus == 1 ? 'Active' : 'Inactive'}</td>
-                        <td style="vertical-align: middle; display: grid; justify-items: center; grid-template-columns: repeat(3, auto);">
+                        <td style="vertical-align: middle; text-align: center;">
                             <button class="btn btn-transparent" onclick="ViewUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-eye"></span></button>
                             <button class="btn btn-transparent" onclick="UpdateUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-pencil"></span></button>
                             <button class="btn btn-transparent" onclick="RemoveUserRecord(${row.RecID}, '${row.UserName}')"><span class="fas fa-trash"></span></button>

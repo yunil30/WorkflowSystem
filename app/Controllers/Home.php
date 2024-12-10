@@ -177,12 +177,9 @@ class Home extends BaseController {
     public function CreateFolder() {
         $folder = create_folder();
         $path = './WfsUploads/'.$folder;
-
-        var_dump($path);
-        return false;
         
         $fileFields = [
-            'attachedMemorandum'
+            'Attachment'
         ];
 
         if (!is_dir($path)) {
@@ -194,6 +191,20 @@ class Home extends BaseController {
                         $newFileName = uniqid() . '.' . $file->getExtension();
                         $file->move($path, $newFileName);
                     } 
+                }
+
+                $data = [
+                    'Document' => $path . '/' . $newFileName
+                ];
+
+                if ($this->UserModel->InsertData('tbl_docs', $data)) {
+                    return $this->response
+                                ->setStatusCode(200)
+                                ->setJSON(['message' => 'Success']);
+                } else {
+                    return $this->response
+                                ->setStatusCode(500)
+                                ->setJSON(['error' => 'Data insertion failed.']);
                 }
             }
         }

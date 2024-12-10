@@ -15,7 +15,6 @@
             <button class="btn page-main-header-btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>
         </div>
         <div class="col-md-12 page-main-content mb-3">  
-         
             <div class="col-md-4 mb-3 p-0">
                 <label>Attachment:</label>
                 <input type="file" class="form-control-file" id="AttachMentlength">
@@ -40,18 +39,10 @@
         }
 
         var formdata = new FormData();
-        formdata.append('attachedMemorandum', file); // Append the file to the FormData
+        formdata.append('Attachment', file); // Append the file to the FormData
 
-        console.log('Attachment: ', file.name);
-
-        // axios.post(host_url + 'Home/CreateFolder', formdata, {
-        //     headers: { 'Content-Type': 'multipart/form-data' }
-        // })
-        // .then(function(res) {
-        //     console.log(res.data);
-        // })
-        // .catch(function(err) {
-        //     console.error('Error uploading file:', err);
-        // });
+        axios.post(host_url + 'Home/CreateFolder', formdata).then(function(res) {
+            console.log(res.data);
+        });
     }
 </script>

@@ -37,8 +37,8 @@
     var host_url = '<?php echo host_url(); ?>';
 
     function CreateFolder() {
-        var fileInput = $('#AttachMentlength'); // Select the file input element
-        var file = fileInput.prop('files')[0]; // Get the first file from the input
+        var fileInput = $('#AttachMentlength');
+        var file = fileInput.prop('files')[0];
 
         if (!file) {
             console.log('No attachment found!');
@@ -46,7 +46,7 @@
         }
 
         var formdata = new FormData();
-        formdata.append('Attachment', file); // Append the file to the FormData
+        formdata.append('Attachment', file); 
 
         axios.post(host_url + 'Home/CreateFolder', formdata).then(function(res) {
             console.log(res.data);
@@ -56,8 +56,11 @@
     function ShowAttachment() {
         axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
             if (res.data.length > 0) {
-                let filePath = res.data[0].Document; // Assuming the first document for simplicity
-                $('#DownloadAttachment').attr('href', host_url + filePath);
+                let url = '<?php echo WfsUploads_url(); ?>';
+                let folderName = res.data[0].folder_name;
+                let fileName = res.data[0].file_name;
+                let path = url + folderName + '/' + fileName;
+                $('#DownloadAttachment').attr('href', path);
             }
         });
     }

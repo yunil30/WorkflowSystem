@@ -83,7 +83,7 @@ class UserModel extends Model {
     }
 
     public function GetDocument($DocumentID) {
-        $str = "SELECT * FROM tbl_docs WHERE RecID = ?";
+        $str = "SELECT * FROM tbl_file WHERE RecID = ?";
         
         $query = $this->db->query($str, [$DocumentID]);
 

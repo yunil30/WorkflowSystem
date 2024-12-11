@@ -182,34 +182,29 @@ class Home extends BaseController {
             'Attachment'
         ];
 
-        if (!is_dir($path)) mkdir($path, 0777, true);
+        if (!is_dir($path)) {
+            if (mkdir($path, 0777, true)) {
+                foreach ($fileFields as $field) {
+                    $file = $this->postRequest->getFile($field);
 
-        // if (!is_dir($path)) {
-        //     if (mkdir($path, 0777, true)) {
-        //         // foreach ($fileFields as $field) {
-        //         //     $file = $this->postRequest->getFile($field);
+                    if ($file && $file->getSize() > 0) {
+                        $fileName = uniqid() . '.' . $file->getExtension();
+                        $file->move($path, $fileName);
+                    } 
+                }
 
-        //         //     if ($file && $file->getSize() > 0) {
-        //         //         $newFileName = uniqid() . '.' . $file->getExtension();
-        //         //         $file->move($path, $newFileName);
-        //         //     } 
-        //         // }
+                $data = [
+                    'folder_name' => $folder,
+                    'file_name' => $fileName,
+                ];
 
-        //         // $data = [
-        //         //     'Document' => $path . '/' . $newFileName
-        //         // ];
-
-        //         // if ($this->UserModel->InsertData('tbl_docs', $data)) {
-        //         //     return $this->response
-        //         //                 ->setStatusCode(200)
-        //         //                 ->setJSON(['message' => 'Success']);
-        //         // } else {
-        //         //     return $this->response
-        //         //                 ->setStatusCode(500)
-        //         //                 ->setJSON(['error' => 'Data insertion failed.']);
-        //         // }
-        //     }
-        // }
+                if ($this->UserModel->InsertData('tbl_file', $data)) {
+                    return $this->response
+                                ->setStatusCode(200)
+                                ->setJSON(['message' => 'Success']);
+                } 
+            }
+        }
     }
 
     public function ShowAttachment() {

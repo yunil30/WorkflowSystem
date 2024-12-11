@@ -46,8 +46,8 @@
         }
     }
 
-    if (!function_exists('upload_url')) {
-        function upload_url() {
+    if (!function_exists('WfsUploads_url')) {
+        function WfsUploads_url() {
             return BASE_URL . 'public/WfsUploads/';
         }    
     }

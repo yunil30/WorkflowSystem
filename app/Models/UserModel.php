@@ -81,4 +81,12 @@ class UserModel extends Model {
 
         return $row->existing;
     }
+
+    public function GetDocument($DocumentID) {
+        $str = "SELECT * FROM tbl_docs WHERE RecID = ?";
+        
+        $query = $this->db->query($str, [$DocumentID]);
+
+        return $query->getResultArray();
+    }
 }

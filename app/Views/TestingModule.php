@@ -21,6 +21,13 @@
             </div>
             <button onclick="CreateFolder()">Create</button>
         </div>
+        <div class="col-md-12 page-main-content mb-3">
+            <label>Attachment:</label><br>
+            <a href="" target="_blank" id="DownloadAttachment" download>
+                <i class="fas fa-file"></i>
+                <span class="font-weight-bold size13">Download Attachment</span>
+            </a>
+        </div>  
     </div>
 </main>
 <?= ShowFooter() ?>
@@ -45,4 +52,17 @@
             console.log(res.data);
         });
     }
+
+    function ShowAttachment() {
+        axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
+            if (res.data.length > 0) {
+                let filePath = res.data[0].Document; // Assuming the first document for simplicity
+                $('#DownloadAttachment').attr('href', host_url + filePath);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        ShowAttachment();
+    });
 </script>

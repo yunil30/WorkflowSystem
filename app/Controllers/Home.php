@@ -176,37 +176,43 @@ class Home extends BaseController {
 
     public function CreateFolder() {
         $folder = create_folder();
-        $path = './WfsUploads/'.$folder;
+        $path = './WfsUploads/' . $folder;
         
         $fileFields = [
             'Attachment'
         ];
 
-        if (!is_dir($path)) {
-            if (mkdir($path, 0777, true)) {
-                foreach ($fileFields as $field) {
-                    $file = $this->postRequest->getFile($field);
+        if (!is_dir($path)) mkdir($path, 0777, true);
 
-                    if ($file && $file->getSize() > 0) {
-                        $newFileName = uniqid() . '.' . $file->getExtension();
-                        $file->move($path, $newFileName);
-                    } 
-                }
+        // if (!is_dir($path)) {
+        //     if (mkdir($path, 0777, true)) {
+        //         // foreach ($fileFields as $field) {
+        //         //     $file = $this->postRequest->getFile($field);
 
-                $data = [
-                    'Document' => $path . '/' . $newFileName
-                ];
+        //         //     if ($file && $file->getSize() > 0) {
+        //         //         $newFileName = uniqid() . '.' . $file->getExtension();
+        //         //         $file->move($path, $newFileName);
+        //         //     } 
+        //         // }
 
-                if ($this->UserModel->InsertData('tbl_docs', $data)) {
-                    return $this->response
-                                ->setStatusCode(200)
-                                ->setJSON(['message' => 'Success']);
-                } else {
-                    return $this->response
-                                ->setStatusCode(500)
-                                ->setJSON(['error' => 'Data insertion failed.']);
-                }
-            }
-        }
+        //         // $data = [
+        //         //     'Document' => $path . '/' . $newFileName
+        //         // ];
+
+        //         // if ($this->UserModel->InsertData('tbl_docs', $data)) {
+        //         //     return $this->response
+        //         //                 ->setStatusCode(200)
+        //         //                 ->setJSON(['message' => 'Success']);
+        //         // } else {
+        //         //     return $this->response
+        //         //                 ->setStatusCode(500)
+        //         //                 ->setJSON(['error' => 'Data insertion failed.']);
+        //         // }
+        //     }
+        // }
+    }
+
+    public function ShowAttachment() {
+        return $this->response->setJSON($this->UserModel->GetDocument(1));
     }
 }

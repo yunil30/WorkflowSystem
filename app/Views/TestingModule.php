@@ -8,6 +8,16 @@
 </head>
 <body>
 <?= ShowHeader() ?>
+<style>
+    img {
+        height: 150px;
+        width: 150px;
+        border: 1px solid black;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #dfdfdf;
+    }
+</style>
 <main class="page-main">
     <div class="col-md-12 main-content">
         <div class="col-md-12 page-main-header mb-3">
@@ -16,18 +26,29 @@
         </div>
         <div class="col-md-12 page-main-content mb-3">  
             <div class="col-md-4 mb-3 p-0">
+                <div class="col-md-12 mb-3">
+                    <img src="img.png" id="profile-pic" />
+                </div>
                 <label>Attachment:</label>
-                <input type="file" class="form-control-file" id="AttachMentlength">
+                <input type="file" class="form-control-file" id="upload-pic">
             </div>
             <button onclick="CreateFolder()">Create</button>
         </div>
-        <div class="col-md-12 page-main-content mb-3">
+        <!-- <div class="col-md-12 page-main-content mb-3">
             <label>Attachment:</label><br>
             <a href="" target="_blank" id="DownloadAttachment" download>
                 <i class="fas fa-file"></i>
                 <span class="font-weight-bold size13">Download Attachment</span>
             </a>
-        </div>  
+        </div>   -->
+        <!-- <div class="col-md-12 page-main-content mb-3">
+            <div class="col-md-12 mb-3">
+                <img src="img.png"/>
+            </div>
+            <div class="col-md-12 mb-3">
+                <input type="file"/>
+            </div>
+        </div>   -->
     </div>
 </main>
 <?= ShowFooter() ?>
@@ -65,7 +86,21 @@
         });
     }
 
+    function updateImageSource(inputSelector, imageSelector) {
+        $(inputSelector).on("change", function() {
+            var file = this.files[0];
+            if (file) {
+                $(imageSelector).attr("src", URL.createObjectURL(file));
+            }
+        });
+    }
+
+// Usage
+updateImageSource("#AttachMentlength", "img");
+
+
     $(document).ready(function() {
+        updateImageSource('#upload-pic', '#profile-pic');
         ShowAttachment();
     });
 </script>

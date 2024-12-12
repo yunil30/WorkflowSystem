@@ -18,23 +18,23 @@
             <div class="col-md-12 page-main-content mb-3">
                 <div class="col-md-4 mb-3 p-0">
                     <label>First name:</label>
-                    <input type="text" class="form-control" id="FirstName" disabled>
+                    <input type="text" class="form-control input-text" id="FirstName" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Middle name:</label>
-                    <input type="text" class="form-control" id="MiddleName" disabled>
+                    <input type="text" class="form-control input-text" id="MiddleName" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Last name:</label>
-                    <input type="text" class="form-control" id="LastName" disabled>
+                    <input type="text" class="form-control input-text" id="LastName" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Username:</label>
-                    <input type="text" class="form-control" id="UserName" disabled>
+                    <input type="text" class="form-control input-text" id="UserName" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Email address:</label>
-                    <input type="text" class="form-control" id="UserEmail" disabled>
+                    <input type="text" class="form-control input-text" id="UserEmail" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>User role:</label>

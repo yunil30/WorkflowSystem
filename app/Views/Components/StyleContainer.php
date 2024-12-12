@@ -181,7 +181,7 @@
                 letter-spacing: 0.1rem;
             }
 
-            input {
+            .input-text {
                 font-family: "Poppins", sans-serif;
                 font-size: 1rem;
                 font-weight: 400;
@@ -291,6 +291,23 @@
             font-weight: 400;
             letter-spacing: 0.1rem;
             padding: 15px 20px 15px 20px;
+
+            .input-text {
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                font-weight: 400;
+                letter-spacing: 0.1rem;
+
+                &:hover,
+                &:focus {
+                    border: 0.1rem solid #e74c3c;
+                    border-color: #1f2328;
+                    letter-spacing: 0.1rem;
+                    color: #1f2328;
+                    outline: none;
+                    box-shadow: 0px 0px 3px rgba(23, 32, 42, 0.8);
+                }
+            }
         }
 
         .modal-footer {

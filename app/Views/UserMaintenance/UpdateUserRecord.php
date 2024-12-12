@@ -18,23 +18,23 @@
             <div class="col-md-12 page-main-content mb-3">
                 <div class="col-md-4 mb-3 p-0">
                     <label>First name:</label>
-                    <input type="text" class="form-control" id="FirstName">
+                    <input type="text" class="form-control input-text" id="FirstName">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Middle name:</label>
-                    <input type="text" class="form-control" id="MiddleName">
+                    <input type="text" class="form-control input-text" id="MiddleName">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Last name:</label>
-                    <input type="text" class="form-control" id="LastName">
+                    <input type="text" class="form-control input-text" id="LastName">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Username:</label>
-                    <input type="text" class="form-control" id="UserName" disabled>
+                    <input type="text" class="form-control input-text" id="UserName" disabled>
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>Email address:</label>
-                    <input type="text" class="form-control" id="UserEmail">
+                    <input type="text" class="form-control input-text" id="UserEmail">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>User role:</label>
@@ -60,8 +60,8 @@
             </div>
             <div class="modal-body">
                 <label>Enter your password.</label>
-                <input type="password" id="UpdateUserPass" class="form-control form-control-sm">
-                <input type="hidden" id="user_key" class="form-control form-control-sm" value="<?= session('session_password') ?>">
+                <input type="password" id="UpdateUserPass" class="form-control input-text form-control-sm">
+                <input type="hidden" id="user_key" class="form-control input-text form-control-sm" value="<?= session('session_password') ?>">
             </div>
             <div class="modal-footer">
                 <button type="button" class="modal-btn btn-success" id="BtnUpdateUser">Confirm</button>

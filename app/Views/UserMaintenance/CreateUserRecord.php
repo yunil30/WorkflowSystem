@@ -37,8 +37,12 @@
                     <input type="text" class="form-control input-text" id="UserEmail">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
-                    <label>Password:</label>
-                    <input type="password" class="form-control input-text" id="UserPassword">
+                    <label>Create Password:</label>
+                    <input type="password" class="form-control input-text" id="CreateUserPassword">
+                </div>
+                <div class="col-md-4 mb-3 p-0">
+                    <label>Confirm Password:</label>
+                    <input type="password" class="form-control input-text" id="ConfirmUserPassword">
                 </div>
                 <div class="col-md-4 mb-3 p-0">
                     <label>User role:</label>
@@ -98,13 +102,15 @@
     }
 
     function saveData() {
+        val upass = $('#CreateUserPassword').val();
+        val upass = $('#ConfirmUserPassword').val();
         var data = {
             FirstName: $('#FirstName').val(),
             MiddleName: $('#MiddleName').val(),
             LastName: $('#LastName').val(),
             UserName: $('#UserName').val(),
             UserEmail: $('#UserEmail').val(),
-            UserPassword: $('#UserPassword').val(),
+            UserPassword: $('#CreateUserPassword').val(),
             UserRole: $('#UserRole').val()
         };
 

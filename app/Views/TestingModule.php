@@ -12,10 +12,13 @@
     img {
         height: 150px;
         width: 150px;
-        border: 1px solid black;
         border-radius: 50%;
         object-fit: cover;
         background-color: #dfdfdf;
+    }
+
+    .input-error {
+        border: 0.1rem solid #e74c3c;
     }
 </style>
 <main class="page-main">
@@ -25,30 +28,30 @@
             <button class="btn page-main-header-btn btn-danger" id="BtnListOfUsers">Back <span class="fas fa-arrow-left"></span></button>
         </div>
         <div class="col-md-12 page-main-content mb-3">  
-            <div class="col-md-4 mb-3 p-0">
-                <div class="col-md-12 mb-3">
-                    <img src="img.png" id="profile-pic" />
+            <div class="col-md-12 mb-3 p-0">
+                <div class="col-md-6 mb-3">
+                    <img src="img.png" id="profile-pic">
                 </div>
-                <label>Attachment:</label>
-                <input type="file" class="form-control-file" id="upload-pic">
+
+                <div class="col-md-6 mb-3">
+                    <input type="file" class="form-control-file" id="upload-pic">
+                </div>
             </div>
-            <button onclick="CreateFolder()">Create</button>
+
+            <div class="col-md-12 mb-3 p-0">
+                <div class="col-md-6 mb-3 p-0">
+                    <label>New Password:</label>
+                    <input type="password" class="form-control input-text" id="NewUserPassword">
+                </div>
+
+                <div class="col-md-6 mb-3 p-0">
+                    <label>Confirm Password:</label>
+                    <input type="password" class="form-control input-text" id="ConfirmUserPassword">
+                </div>
+
+                <button id="btnConfirmPassword" onclick="confirmPassword()">Confirm</button>
+            </div>
         </div>
-        <!-- <div class="col-md-12 page-main-content mb-3">
-            <label>Attachment:</label><br>
-            <a href="" target="_blank" id="DownloadAttachment" download>
-                <i class="fas fa-file"></i>
-                <span class="font-weight-bold size13">Download Attachment</span>
-            </a>
-        </div>   -->
-        <!-- <div class="col-md-12 page-main-content mb-3">
-            <div class="col-md-12 mb-3">
-                <img src="img.png"/>
-            </div>
-            <div class="col-md-12 mb-3">
-                <input type="file"/>
-            </div>
-        </div>   -->
     </div>
 </main>
 <?= ShowFooter() ?>
@@ -74,6 +77,32 @@
         });
     }
 
+    $('#ConfirmUserPassword').on('input', function() {
+        var NewUserPassword = $('#NewUserPassword').val();
+        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
+
+        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+
+        if (NewUserPassword === ConfirmUserPassword && ConfirmUserPassword !== "") {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-correct');
+        } else if (ConfirmUserPassword !== "") {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+        }
+    });
+
+    $('#NewUserPassword').on('input', function() {
+        var NewUserPassword = $('#NewUserPassword').val();
+        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
+
+        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+
+        if (NewUserPassword !== "" || NewUserPassword === "") {
+            $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+        } else if (NewUserPassword !== ConfirmUserPassword) {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+        }
+    });
+
     function ShowAttachment() {
         axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
             if (res.data.length > 0) {
@@ -94,10 +123,6 @@
             }
         });
     }
-
-// Usage
-updateImageSource("#AttachMentlength", "img");
-
 
     $(document).ready(function() {
         updateImageSource('#upload-pic', '#profile-pic');

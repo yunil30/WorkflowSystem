@@ -16,7 +16,7 @@ class LoginModel extends Model {
         $this->Username = $username;
         $this->Password = $password;
 
-        $this->str = "SELECT RecID, 
+        $this->str = "SELECT RecID UserNo, 
                             first_name FirstName,   
                             middle_name MiddleName, 
                             last_name LastName, 

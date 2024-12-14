@@ -39,6 +39,7 @@ class Login extends BaseController {
         $this->response->setCookie('uname', $encryptedUsername, 7200); 
         $this->response->setCookie('pword', $encryptedPassword, 7200);
 
+        $this->session->set('session_userno', $result[0]['UserNo']);
         $this->session->set('session_username', $result[0]['UserName']);
         $this->session->set('session_userrole', $result[0]['UserRole']);
         $this->session->set('session_password', $result[0]['UserPass']);
@@ -49,6 +50,7 @@ class Login extends BaseController {
     }
     
     public function Logout() {
+        $this->session->remove('session_userno');
         $this->session->remove('session_username');
         $this->session->remove('session_userrole');
         $this->session->remove('session_password');

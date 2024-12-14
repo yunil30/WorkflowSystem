@@ -317,6 +317,16 @@
                     outline: none;
                     box-shadow: 0px 0px 3px rgba(23, 32, 42, 0.8);
                 }
+
+                &.input-correct {
+                    border: 0.1rem solid rgb(60, 231, 97);
+                    box-shadow: 0px 0px 5px rgba(60, 231, 97, 0.8);
+                }
+
+                &.input-error {
+                    border: 0.1rem solid rgb(231, 76, 60);
+                    box-shadow: 0px 0px 5px rgba(231, 76, 60, 0.8);
+                }
             }
         }
 

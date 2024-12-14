@@ -116,6 +116,31 @@ class Home extends BaseController {
         }
     }
 
+    public function ChangePassword() {
+        $requestJson = $this->postRequest->getJSON();
+        $UserName = $this->session->get('session_username');
+        $UserNo = $this->session->get('session_userno');
+
+        $fields = [
+            'RecID'     => $UserNo,
+            'user_name' => $UserName
+        ];
+
+        $data = [
+            'password' => sha1(md5($requestJson->NewPassword)),
+        ];
+
+        if ($this->UserModel->UpdateData($fields, 'tbl_user_access', $data)) {
+            return $this->response
+                        ->setStatusCode(200)
+                        ->setJSON(['message' => 'Change password successfully']);
+        } else {
+            return $this->response
+                        ->setStatusCode(500)
+                        ->setJSON(['error' => 'Change password failed!']);
+        }
+    }
+
     public function UpdateRecord() {
         $requestJson = $this->postRequest->getJSON();
 

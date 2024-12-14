@@ -32,33 +32,78 @@
                 <div class="col-md-6 mb-3">
                     <img src="img.png" id="profile-pic">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <input type="file" class="form-control-file" id="upload-pic">
                 </div>
-            </div>
-
-            <div class="col-md-12 mb-3 p-0">
-                <div class="col-md-6 mb-3 p-0">
-                    <label>New Password:</label>
-                    <input type="password" class="form-control input-text" id="NewUserPassword">
+                <div class="col-md-6 mb-3">
+                    <button type="button" class="modal-btn" id="BtnChangePassword">Change Password</button>
                 </div>
-
-                <div class="col-md-6 mb-3 p-0">
-                    <label>Confirm Password:</label>
-                    <input type="password" class="form-control input-text" id="ConfirmUserPassword">
-                </div>
-
-                <button id="btnConfirmPassword" onclick="confirmPassword()">Confirm</button>
             </div>
         </div>
     </div>
 </main>
+<div class="modal fade" id="ChangePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title">Change Password</label>
+                <span class="modal-close" data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 mb-3 p-0">
+                    <label>New Password:</label>
+                    <input type="password" class="form-control input-text" id="NewUserPassword">
+                </div>
+                <div class="col-md-12 mb-3 p-0">
+                    <label>Confirm Password:</label>
+                    <input type="password" class="form-control input-text" id="ConfirmUserPassword">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-btn btn-success" id="BtnChangeUserPassword">Confirm</button>
+                <button type="button" class="modal-btn btn-danger" id="BtnCancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= ShowFooter() ?>
 </body>
 </html>
 <script>
     var host_url = '<?php echo host_url(); ?>';
+
+    $('#ConfirmUserPassword').on('input', function() {
+        var NewUserPassword = $('#NewUserPassword').val();
+        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
+
+        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+
+        if (NewUserPassword === ConfirmUserPassword && ConfirmUserPassword !== "") {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-correct');
+        } else if (ConfirmUserPassword !== "") {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+        }
+    });
+
+    $('#NewUserPassword').on('input', function() {
+        var NewUserPassword = $('#NewUserPassword').val();
+        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
+
+        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+
+        if (NewUserPassword !== "" || NewUserPassword === "") {
+            $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
+        } else if (NewUserPassword !== ConfirmUserPassword) {
+            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+        }
+    });
+
+    $('#BtnChangePassword').click(function() {
+        $('#BtnChangePassword').attr({
+            'data-toggle': 'modal',
+            'data-target': '#ChangePasswordModal'
+        });
+    });
 
     function CreateFolder() {
         var fileInput = $('#AttachMentlength');
@@ -77,21 +122,6 @@
         });
     }
 
-    $('#NewUserPassword, #ConfirmUserPassword').on('input', function() {
-        var NewUserPassword = $('#NewUserPassword').val();
-        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
-
-        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
-
-        if (NewUserPassword && ConfirmUserPassword) {
-            if (NewUserPassword === ConfirmUserPassword) {
-                $('#NewUserPassword, #ConfirmUserPassword').addClass('input-correct');
-            } else {
-                $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
-            }
-        }
-    });
-
     function ShowAttachment() {
         axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
             if (res.data.length > 0) {
@@ -103,6 +133,38 @@
             }
         });
     }
+
+    function UpdatePassword() {
+        var data = {
+            NewPassword: $('#NewUserPassword').val(),
+        };
+
+        axios.post(host_url + 'Home/ChangePassword', data).then(function(res) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful!',
+                text: 'Your Password have been successfully changed.',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1000)
+                }
+            });
+        }).catch(function(error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: error.response?.data?.error || 'An error occurred while saving data.',
+                confirmButtonText: 'OK'
+            });
+        });
+    }
+
+    $('#BtnChangeUserPassword').click(function() {
+        UpdatePassword()
+    });
 
     function updateImageSource(inputSelector, imageSelector) {
         $(inputSelector).on("change", function() {

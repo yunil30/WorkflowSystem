@@ -77,29 +77,18 @@
         });
     }
 
-    $('#ConfirmUserPassword').on('input', function() {
+    $('#NewUserPassword, #ConfirmUserPassword').on('input', function() {
         var NewUserPassword = $('#NewUserPassword').val();
         var ConfirmUserPassword = $('#ConfirmUserPassword').val();
 
         $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
 
-        if (NewUserPassword === ConfirmUserPassword && ConfirmUserPassword !== "") {
-            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-correct');
-        } else if (ConfirmUserPassword !== "") {
-            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
-        }
-    });
-
-    $('#NewUserPassword').on('input', function() {
-        var NewUserPassword = $('#NewUserPassword').val();
-        var ConfirmUserPassword = $('#ConfirmUserPassword').val();
-
-        $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
-
-        if (NewUserPassword !== "" || NewUserPassword === "") {
-            $('#NewUserPassword, #ConfirmUserPassword').removeClass('input-error input-correct');
-        } else if (NewUserPassword !== ConfirmUserPassword) {
-            $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+        if (NewUserPassword && ConfirmUserPassword) {
+            if (NewUserPassword === ConfirmUserPassword) {
+                $('#NewUserPassword, #ConfirmUserPassword').addClass('input-correct');
+            } else {
+                $('#NewUserPassword, #ConfirmUserPassword').addClass('input-error');
+            }
         }
     });
 

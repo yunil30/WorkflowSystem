@@ -133,11 +133,11 @@ class Home extends BaseController {
         if ($this->UserModel->UpdateData($fields, 'tbl_user_access', $data)) {
             return $this->response
                         ->setStatusCode(200)
-                        ->setJSON(['message' => 'Change password successfully']);
+                        ->setJSON(['message' => 'Password changed successfully!']);
         } else {
             return $this->response
                         ->setStatusCode(500)
-                        ->setJSON(['error' => 'Change password failed!']);
+                        ->setJSON(['error' => 'Password change failed!']);
         }
     }
 

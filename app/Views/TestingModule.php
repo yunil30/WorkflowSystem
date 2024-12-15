@@ -72,6 +72,26 @@
 <script>
     var host_url = '<?php echo host_url(); ?>';
 
+    ShowMessage = function(icon,title,position = 'top-end', url = '', time = 1500) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: position,
+            showConfirmButton: false,
+            timer: time,
+            timerProgressBar: true,
+            onClose: () => {
+                if (url != '') 
+                httpGet(url);
+                history.pushState({ prevUrl: window.location.href }, '', url);
+            }
+        })
+
+        Toast.fire({
+        icon: icon,
+        title: title
+        })
+    }
+
     $('#ConfirmUserPassword').on('input', function() {
         var NewUserPassword = $('#NewUserPassword').val();
         var ConfirmUserPassword = $('#ConfirmUserPassword').val();
@@ -163,6 +183,16 @@
     }
 
     $('#BtnChangeUserPassword').click(function() {
+        if ($('#NewUserPassword').val() === '') {
+            ShowMessage('error', 'Please choose a purpose of payment!');
+            $('#NewUserPassword').trigger('chosen:activate');
+            return false;
+        }
+        if ($('#ConfirmUserPassword').val() === '') {
+            ShowMessage('error', 'Please choose a purpose of payment!');
+            $('#ConfirmUserPassword').trigger('chosen:activate');
+            return false;
+        }
         UpdatePassword()
     });
 

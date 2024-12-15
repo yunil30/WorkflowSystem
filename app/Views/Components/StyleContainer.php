@@ -20,7 +20,7 @@
         height: 100vh;
         display: grid;
         grid-template-columns: 14rem 1fr;
-        grid-template-rows: 3.5rem 1fr 3.5rem;
+        grid-template-rows: 3.5rem 1fr auto;
         grid-template-areas: 
             "header header"
             "sidebar main"

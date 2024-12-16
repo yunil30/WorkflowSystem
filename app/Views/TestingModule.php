@@ -72,26 +72,6 @@
 <script>
     var host_url = '<?php echo host_url(); ?>';
 
-    ShowMessage = function(icon,title,position = 'top-end', url = '', time = 1500) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: position,
-            showConfirmButton: false,
-            timer: time,
-            timerProgressBar: true,
-            onClose: () => {
-                if (url != '') 
-                httpGet(url);
-                history.pushState({ prevUrl: window.location.href }, '', url);
-            }
-        })
-
-        Toast.fire({
-        icon: icon,
-        title: title
-        })
-    }
-
     $('#ConfirmUserPassword').on('input', function() {
         var NewUserPassword = $('#NewUserPassword').val();
         var ConfirmUserPassword = $('#ConfirmUserPassword').val();
@@ -154,6 +134,22 @@
         });
     }
 
+    ShowMessage = function(icon, title, position = 'center', url = '') {
+        Swal.fire({
+            icon: icon,
+            title: title,
+            position: position, 
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true, 
+        }).then((result) => {
+            if (result.isConfirmed && url !== '') {
+                httpGet(url); 
+                history.pushState({ prevUrl: window.location.href }, '', url);
+            }
+        });
+    };
+
     function UpdatePassword() {
         var data = {
             NewPassword: $('#NewUserPassword').val(),
@@ -184,15 +180,23 @@
 
     $('#BtnChangeUserPassword').click(function() {
         if ($('#NewUserPassword').val() === '') {
-            ShowMessage('error', 'Please choose a purpose of payment!');
+            ShowMessage('error', 'Please enter a new password!');
             $('#NewUserPassword').trigger('chosen:activate');
             return false;
         }
+
         if ($('#ConfirmUserPassword').val() === '') {
-            ShowMessage('error', 'Please choose a purpose of payment!');
+            ShowMessage('error', 'Please confirm your new password!');
             $('#ConfirmUserPassword').trigger('chosen:activate');
             return false;
         }
+
+        if ($('#NewUserPassword').val() !== $('#ConfirmUserPassword').val()) {
+            ShowMessage('error', 'Passwords do not match. Please try again.');
+            $('#NewUserPassword').trigger('chosen:activate');
+            return false;
+        }
+
         UpdatePassword()
     });
 

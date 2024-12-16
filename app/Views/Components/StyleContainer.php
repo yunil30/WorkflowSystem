@@ -26,7 +26,7 @@
             "sidebar main"
             "footer footer";
         transition: all 1s ease;
-        padding-right: 0 !important
+        padding-right: 0 !important;
     }
 
     /* Body Minimize Portion */
@@ -141,6 +141,7 @@
             border-radius: 0.3rem;
             padding: 1rem;
             box-shadow: 0px 1px 10px #00000047;
+            height: 100%;
         }
 
         /* Main page header */

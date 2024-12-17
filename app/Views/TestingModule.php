@@ -35,8 +35,38 @@
                 <div class="col-md-6 mb-3">
                     <input type="file" class="form-control-file" id="upload-pic">
                 </div>
-                <div class="col-md-6 mb-3">
-                    <button type="button" class="modal-btn" id="BtnChangePassword">Change Password</button>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <button type="button" class="btn btn-default" id="BtnChangePassword">Change Password</button>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>First name:</label>
+                    <input type="text" class="form-control input-text" id="FirstName" readonly>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Middle name:</label>
+                    <input type="text" class="form-control input-text" id="MiddleName" readonly>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Last name:</label>
+                    <input type="text" class="form-control input-text" id="LastName" readonly>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Username:</label>
+                    <input type="text" class="form-control input-text" id="UserName" readonly>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Email address:</label>
+                    <input type="text" class="form-control input-text" id="UserEmail" readonly>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>User role:</label>
+                    <select class="form-control" id="UserRole" disabled>
+                        <option value="">Select an Option</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -134,7 +164,7 @@
         });
     }
 
-    ShowMessage = function(icon, title, position = 'center', url = '') {
+    function ShowMessage(icon, title, position = 'center', url = '') {
         Swal.fire({
             icon: icon,
             title: title,
@@ -142,13 +172,14 @@
             showConfirmButton: false,
             timer: 3000, 
             timerProgressBar: true, 
+            heightAuto: false, 
         }).then((result) => {
             if (result.isConfirmed && url !== '') {
                 httpGet(url); 
                 history.pushState({ prevUrl: window.location.href }, '', url);
             }
         });
-    };
+    }
 
     function UpdatePassword() {
         var data = {
@@ -200,6 +231,11 @@
         UpdatePassword()
     });
 
+    $('#BtnListOfUsers').click(function() {
+        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+        window.location.href = ShowListOfUsers;
+    });
+
     function updateImageSource(inputSelector, imageSelector) {
         $(inputSelector).on("change", function() {
             var file = this.files[0];
@@ -209,8 +245,23 @@
         });
     }
 
+    function ViewUserProfile() {
+        axios.get(host_url + 'Home/GerUserProfile').then(function(res) {
+            var UserProfile = res.data[0];
+            $('#FirstName').val(UserProfile.FirstName);
+            $('#MiddleName').val(UserProfile.MiddleName);
+            $('#LastName').val(UserProfile.LastName);
+            $('#UserName').val(UserProfile.UserName);
+            $('#UserEmail').val(UserProfile.UserEmail);
+            $('#UserRole').val(UserProfile.UserRole);
+s        });
+    }
+
+    
+
     $(document).ready(function() {
         updateImageSource('#upload-pic', '#profile-pic');
         ShowAttachment();
+        ViewUserProfile();
     });
 </script>

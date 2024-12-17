@@ -253,6 +253,27 @@
             font-family: "Poppins", sans-serif;
             letter-spacing: 0.1rem; 
         }
+
+        .btn-default {
+            background-color: #1f2328;
+            border: none;
+            border-radius: 5px;
+            letter-spacing: 0.1rem;
+            font-size: 16px;
+            color: #d5d8dc;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #34495e;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            &:active {
+                background-color: #1c2833;
+                transform: translateY(2px);
+            }
+        }
     }
 
     /* Footer Portion */

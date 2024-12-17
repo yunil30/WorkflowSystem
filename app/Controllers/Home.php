@@ -118,8 +118,8 @@ class Home extends BaseController {
 
     public function ChangePassword() {
         $requestJson = $this->postRequest->getJSON();
-        $UserName = $this->session->get('session_username');
         $UserNo = $this->session->get('session_userno');
+        $UserName = $this->session->get('session_username');
 
         $fields = [
             'RecID'     => $UserNo,
@@ -234,5 +234,12 @@ class Home extends BaseController {
 
     public function ShowAttachment() {
         return $this->response->setJSON($this->UserModel->GetDocument(1));
+    }
+
+    public function GerUserProfile() {
+        $UserNo = $this->session->get('session_userno');
+        $UserName = $this->session->get('session_username');
+        
+        return $this->response->setJSON($this->UserModel->GerUserProfile($UserNo, $UserName));
     }
 }

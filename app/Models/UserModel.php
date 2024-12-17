@@ -89,4 +89,21 @@ class UserModel extends Model {
 
         return $query->getResultArray();
     }
+
+    public function GerUserProfile($UserID, $UserName) {
+        $str = 'SELECT 
+                    RecID AS UserID,
+                    first_name AS FirstName,
+                    middle_name AS MiddleName,
+                    last_name AS LastName,
+                    user_name AS UserName,
+                    user_email AS UserEmail,
+                    user_role AS UserRole
+                FROM tbl_user_access 
+                    WHERE RecID = ? AND user_name = ?';
+
+        $query = $this->db->query($str, [$UserID, $UserName]);
+
+        return $query->getResultArray();
+    }
 }

@@ -51,4 +51,10 @@
             return BASE_URL . 'public/WfsUploads/';
         }    
     }
+
+    if (!function_exists('ProfilePictures_url')) {
+        function ProfilePictures_url() {
+            return BASE_URL . 'public/ProfilePictures/';
+        }    
+    }
 ?>

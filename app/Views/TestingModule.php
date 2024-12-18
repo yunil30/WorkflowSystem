@@ -30,12 +30,19 @@
         <div class="col-md-12 page-main-content mb-3">  
             <div class="col-md-12 mb-3 p-0">
                 <div class="col-md-6 mb-3">
-                    <img src="img.png" id="profile-pic">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="file" class="form-control-file" id="upload-pic">
+                    <img id="ProfilePic">
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input type="file" class="form-control-file" id="UploadProfilePic">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <button type="button" class="btn btn-default" id="BtnSavePhoto" onclick="SaveProfilePic()">Save Photo</button>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <button type="button" class="btn btn-default" id="BtnChangePassword">Change Password</button>
@@ -135,42 +142,43 @@
         });
     });
 
-    function CreateFolder() {
-        var fileInput = $('#AttachMentlength');
-        var file = fileInput.prop('files')[0];
+    $('#BtnChangeUserPassword').click(function() {
+        if ($('#NewUserPassword').val() === '') {
+            ShowMessage('error', 'Please enter a new password!');
+            $('#NewUserPassword').trigger('chosen:activate');
 
-        if (!file) {
-            console.log('No attachment found!');
-            return;
+            return false;
         }
 
-        var formdata = new FormData();
-        formdata.append('Attachment', file); 
+        if ($('#ConfirmUserPassword').val() === '') {
+            ShowMessage('error', 'Please confirm your new password!');
+            $('#ConfirmUserPassword').trigger('chosen:activate');
 
-        axios.post(host_url + 'Home/CreateFolder', formdata).then(function(res) {
-            console.log(res.data);
-        });
-    }
+            return false;
+        }
 
-    function ShowAttachment() {
-        axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
-            if (res.data.length > 0) {
-                let url = '<?php echo WfsUploads_url(); ?>';
-                let folderName = res.data[0].folder_name;
-                let fileName = res.data[0].file_name;
-                let path = url + folderName + '/' + fileName;
-                $('#DownloadAttachment').attr('href', path);
-            }
-        });
-    }
+        if ($('#NewUserPassword').val() !== $('#ConfirmUserPassword').val()) {
+            ShowMessage('error', 'Passwords do not match. Please try again.');
+            $('#NewUserPassword').trigger('chosen:activate');
 
-    function ShowMessage(icon, title, position = 'center', url = '') {
+            return false;
+        }
+
+        UpdatePassword()
+    });
+
+    $('#BtnListOfUsers').click(function() {
+        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
+        window.location.href = ShowListOfUsers;
+    });
+
+    function ShowMessage(icon, title, position = 'center') {
         Swal.fire({
             icon: icon,
             title: title,
             position: position, 
             showConfirmButton: false,
-            timer: 3000, 
+            timer: 1500, 
             timerProgressBar: true, 
             heightAuto: false, 
         }).then((result) => {
@@ -178,6 +186,26 @@
                 httpGet(url); 
                 history.pushState({ prevUrl: window.location.href }, '', url);
             }
+        });
+    }
+
+    function ViewUserProfile() {
+        axios.get(host_url + 'Home/GetUserProfile').then(function(res) {
+            var UserProfile = res.data[0];
+            let url = '<?php echo ProfilePictures_url(); ?>';
+            let Folder = UserProfile.FolderName;
+            let Picture = UserProfile.PicName;
+            let path = url + Folder + '/' + Picture;
+
+            console.log(path);
+            
+            $('#ProfilePic').attr('src', path);
+            $('#FirstName').val(UserProfile.FirstName);
+            $('#MiddleName').val(UserProfile.MiddleName);
+            $('#LastName').val(UserProfile.LastName);
+            $('#UserName').val(UserProfile.UserName);
+            $('#UserEmail').val(UserProfile.UserEmail);
+            $('#UserRole').val(UserProfile.UserRole);
         });
     }
 
@@ -209,58 +237,66 @@
         });
     }
 
-    $('#BtnChangeUserPassword').click(function() {
-        if ($('#NewUserPassword').val() === '') {
-            ShowMessage('error', 'Please enter a new password!');
-            $('#NewUserPassword').trigger('chosen:activate');
-            return false;
-        }
-
-        if ($('#ConfirmUserPassword').val() === '') {
-            ShowMessage('error', 'Please confirm your new password!');
-            $('#ConfirmUserPassword').trigger('chosen:activate');
-            return false;
-        }
-
-        if ($('#NewUserPassword').val() !== $('#ConfirmUserPassword').val()) {
-            ShowMessage('error', 'Passwords do not match. Please try again.');
-            $('#NewUserPassword').trigger('chosen:activate');
-            return false;
-        }
-
-        UpdatePassword()
-    });
-
-    $('#BtnListOfUsers').click(function() {
-        var ShowListOfUsers = host_url + 'Home/ShowListOfUsers';
-        window.location.href = ShowListOfUsers;
-    });
-
-    function updateImageSource(inputSelector, imageSelector) {
+    function ChangeProfilePic(inputSelector, imageSelector) {
         $(inputSelector).on("change", function() {
             var file = this.files[0];
+            
             if (file) {
                 $(imageSelector).attr("src", URL.createObjectURL(file));
             }
         });
     }
 
-    function ViewUserProfile() {
-        axios.get(host_url + 'Home/GerUserProfile').then(function(res) {
-            var UserProfile = res.data[0];
-            $('#FirstName').val(UserProfile.FirstName);
-            $('#MiddleName').val(UserProfile.MiddleName);
-            $('#LastName').val(UserProfile.LastName);
-            $('#UserName').val(UserProfile.UserName);
-            $('#UserEmail').val(UserProfile.UserEmail);
-            $('#UserRole').val(UserProfile.UserRole);
-s        });
+    function SaveProfilePic() {
+        var PictureInput = $('#UploadProfilePic');
+        var Picture = PictureInput.prop('files')[0];
+
+        if ($('#UploadProfilePic').val() === '') {
+            ShowMessage('error', 'No image uploaded!');
+            $('#UploadProfilePic').trigger('chosen:activate');
+
+            return false;
+        }
+
+        var formdata = new FormData();
+        formdata.append('Picture', Picture); 
+
+        axio.post(host_url + 'Home/SaveProfilePic', formdata).then(function(res) {
+            console.log(res.data);
+        });
     }
 
-    
+    function CreateFolder() {
+        var fileInput = $('#AttachMentlength');
+        var file = fileInput.prop('files')[0];
+
+        if (!file) {
+            console.log('No attachment found!');
+            return;
+        }
+
+        var formdata = new FormData();
+        formdata.append('Attachment', file); 
+
+        axios.post(host_url + 'Home/CreateFolder', formdata).then(function(res) {
+            console.log(res.data);
+        });
+    }
+
+    function ShowAttachment() {
+        axios.get(host_url + 'Home/ShowAttachment').then(function(res) {
+            if (res.data.length > 0) {
+                let url = '<?php echo WfsUploads_url(); ?>';
+                let folderName = res.data[0].folder_name;
+                let fileName = res.data[0].file_name;
+                let path = url + folderName + '/' + fileName;
+                $('#DownloadAttachment').attr('href', path);
+            }
+        });
+    }
 
     $(document).ready(function() {
-        updateImageSource('#upload-pic', '#profile-pic');
+        ChangeProfilePic('#UploadProfilePic', '#ProfilePic');
         ShowAttachment();
         ViewUserProfile();
     });

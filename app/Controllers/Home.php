@@ -199,6 +199,41 @@ class Home extends BaseController {
         }
     }
 
+    public function SaveProfilePic() {
+        $UserNo = $this->session->get('session_userno');
+        $folder = create_folder();
+        $path = './ProfilePictures/' . $folder;
+
+        $fileFields = [
+            'Picture'
+        ];
+
+        if (!is_dir($path)) {
+            if (mkdir($path, 0777, true)) {
+                foreach ($fileFields as $field) {
+                    $file = $this->postRequest->getFile($field);
+
+                    if ($file && $file->getSize() > 0) {
+                        $fileName = uniqid() . '.' . $file->getExtension();
+                        $file->move($path, $fileName);
+                    } 
+                }
+
+                $data = [
+                    'UserID' => $UserNo,
+                    'folder_name' => $folder,
+                    'pic_name' => $fileName,
+                ];
+
+                if ($this->UserModel->InsertData('tbl_profile_pic', $data)) {
+                    return $this->response
+                                ->setStatusCode(200)
+                                ->setJSON(['message' => 'Success']);
+                } 
+            }
+        }
+    }
+
     public function CreateFolder() {
         $folder = create_folder();
         $path = './WfsUploads/' . $folder;
@@ -236,10 +271,11 @@ class Home extends BaseController {
         return $this->response->setJSON($this->UserModel->GetDocument(1));
     }
 
-    public function GerUserProfile() {
+    public function GetUserProfile() {
         $UserNo = $this->session->get('session_userno');
         $UserName = $this->session->get('session_username');
         
-        return $this->response->setJSON($this->UserModel->GerUserProfile($UserNo, $UserName));
+        return $this->response->setJSON($this->UserModel->GetUserProfile($UserNo, $UserName));
     }
+
 }

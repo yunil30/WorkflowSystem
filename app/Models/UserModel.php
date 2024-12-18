@@ -90,17 +90,21 @@ class UserModel extends Model {
         return $query->getResultArray();
     }
 
-    public function GerUserProfile($UserID, $UserName) {
+    public function GetUserProfile($UserID, $UserName) {
         $str = 'SELECT 
-                    RecID AS UserID,
-                    first_name AS FirstName,
-                    middle_name AS MiddleName,
-                    last_name AS LastName,
-                    user_name AS UserName,
-                    user_email AS UserEmail,
-                    user_role AS UserRole
-                FROM tbl_user_access 
-                    WHERE RecID = ? AND user_name = ?';
+                X.RecID,
+                X.first_name AS FirstName,
+                X.middle_name AS MiddleName,
+                X.last_name AS LastName,
+                X.user_name AS UserName,
+                X.user_email AS UserEmail,
+                X.user_role AS UserRole,
+                Y.UserID,
+                Y.folder_name AS FolderName,
+                Y.pic_name AS PicName
+            FROM tbl_user_access AS X
+                LEFT JOIN tbl_profile_pic AS Y ON X.RecID = Y.UserID
+            WHERE X.RecID = ? AND X.user_name = ?';
 
         $query = $this->db->query($str, [$UserID, $UserName]);
 

@@ -192,10 +192,9 @@
     function ViewUserProfile() {
         axios.get(host_url + 'Home/GetUserProfile').then(function(res) {
             var UserProfile = res.data[0];
-            let url = '<?php echo ProfilePictures_url(); ?>';
             let Folder = UserProfile.FolderName;
             let Picture = UserProfile.PicName;
-            let path = url + Folder + '/' + Picture;
+            let path = '../ProfilePictures/' + Folder + '/' + Picture;
 
             console.log(path);
             
@@ -242,6 +241,7 @@
             var file = this.files[0];
             
             if (file) {
+                console.log('Hello: ' + URL.createObjectURL(file));
                 $(imageSelector).attr("src", URL.createObjectURL(file));
             }
         });

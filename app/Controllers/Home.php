@@ -203,6 +203,9 @@ class Home extends BaseController {
         $UserNo = $this->session->get('session_userno');
         $folder = create_folder();
         $path = './ProfilePictures/' . $folder;
+        // $Testing = $this->UserModel->GetProfilePicture($UserNo);
+        // var_dump($Testing[2]);
+        // return false;
 
         $fileFields = [
             'Picture'

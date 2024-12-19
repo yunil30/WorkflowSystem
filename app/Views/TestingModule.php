@@ -195,8 +195,6 @@
             let Folder = UserProfile.FolderName;
             let Picture = UserProfile.PicName;
             let path = '../ProfilePictures/' + Folder + '/' + Picture;
-
-            console.log(path);
             
             $('#ProfilePic').attr('src', path);
             $('#FirstName').val(UserProfile.FirstName);
@@ -254,14 +252,13 @@
         if ($('#UploadProfilePic').val() === '') {
             ShowMessage('error', 'No image uploaded!');
             $('#UploadProfilePic').trigger('chosen:activate');
-
             return false;
         }
 
         var formdata = new FormData();
         formdata.append('Picture', Picture); 
 
-        axio.post(host_url + 'Home/SaveProfilePic', formdata).then(function(res) {
+        axios.post(host_url + 'Home/SaveProfilePic', formdata).then(function(res) {
             console.log(res.data);
         });
     }

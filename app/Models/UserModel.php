@@ -110,4 +110,17 @@ class UserModel extends Model {
 
         return $query->getResultArray();
     }
+
+    public function GetProfilePicture($UserID) {
+        $str = 'SELECT                 
+                X.UserID,
+                X.folder_name AS FolderName,
+                X.pic_name AS PicName
+            FROM tbl_profile_pic X
+                WHERE X.RecID = ?';
+
+        $query = $this->db->query($str, [$UserID]);
+
+        return $query->getResultArray(); 
+    }
 }

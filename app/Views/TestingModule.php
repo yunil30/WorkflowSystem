@@ -192,12 +192,9 @@
     function ViewUserProfile() {
         axios.get(host_url + 'Home/GetUserProfile').then(function(res) {
             var UserProfile = res.data[0];
-            let url = '<?php echo ProfilePictures_url(); ?>';
             let Folder = UserProfile.FolderName;
             let Picture = UserProfile.PicName;
-            let path = url + Folder + '/' + Picture;
-
-            console.log(path);
+            let path = '../ProfilePictures/' + Folder + '/' + Picture;
             
             $('#ProfilePic').attr('src', path);
             $('#FirstName').val(UserProfile.FirstName);
@@ -242,6 +239,7 @@
             var file = this.files[0];
             
             if (file) {
+                console.log('Hello: ' + URL.createObjectURL(file));
                 $(imageSelector).attr("src", URL.createObjectURL(file));
             }
         });
@@ -254,14 +252,13 @@
         if ($('#UploadProfilePic').val() === '') {
             ShowMessage('error', 'No image uploaded!');
             $('#UploadProfilePic').trigger('chosen:activate');
-
             return false;
         }
 
         var formdata = new FormData();
         formdata.append('Picture', Picture); 
 
-        axio.post(host_url + 'Home/SaveProfilePic', formdata).then(function(res) {
+        axios.post(host_url + 'Home/SaveProfilePic', formdata).then(function(res) {
             console.log(res.data);
         });
     }

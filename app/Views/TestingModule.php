@@ -9,6 +9,28 @@
 <body>
 <?= ShowHeader() ?>
 <style>
+    .custom-file-upload, 
+    .custom-file-delete{
+        /* background-color: #007bff; */
+        /* color: #fff; */
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1rem;
+        cursor: pointer;
+        border: 2px solid #007bff;
+        transition: all 0.3s ease;
+    }
+
+    .custom-file-upload:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .custom-file-upload i {
+        margin-right: 8px;
+    }
+
     img {
         height: 150px;
         width: 150px;
@@ -33,16 +55,26 @@
                     <img id="ProfilePic">
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="file" class="form-control-file" id="UploadProfilePic">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <button type="button" class="btn btn-default" id="BtnSavePhoto" onclick="SaveProfilePic()">Save Photo</button>
+                    <label for="UploadProfilePic" class="btn btn-primary text-center custom-file-upload">
+                        <i class="fas fa-upload"></i> Upload
+                    </label>
+                    <input type="file" class="form-control-file" id="UploadProfilePic" style="display: none;" accept="image/*">
+
+                    <label for="DeleteProfilePic" class="btn btn-primary text-center custom-file-delete">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </label>
+                    <input type="button" class="form-control-file" id="DeleteProfilePic" style="display: none;">
+
+                    <label for="BtnSavePhoto" class="btn btn-primary text-center custom-file-delete">
+                        <i class="fas fa-floppy-disk"></i> Save
+                    </label>
+                    <input type="button" class="btn btn-default" id="BtnSavePhoto" style="display: none;" onclick="SaveProfilePic()">
                 </div>
             </div>
 
+         
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <button type="button" class="btn btn-default" id="BtnChangePassword">Change Password</button>

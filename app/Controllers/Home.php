@@ -39,7 +39,14 @@ class Home extends BaseController {
 
     public function TestingModule() {
         if ($this->session->has('session_username')) {
-            return view('TestingModule');
+            return view('UserMaintenance/TestingModule');
+        }
+        return view('LoginForm');
+    }
+
+    public function ViewUserProfile() {
+        if ($this->session->has('session_username')) {
+            return view('UserProfile/ViewUserProfile');
         }
         return view('LoginForm');
     }
